@@ -8,7 +8,10 @@ namespace KTANE_helper
 {
     internal static class IOHandler
     {
+        private static string scope = ">";
         internal static void Prompt() => Console.Write($"{scope}> ");
+        internal static void SetPromptScope(string sc) => scope = sc;
+        internal static void ResetPromptScope() => SetPromptScope(">");
 
         internal static string Query(string message)
         {

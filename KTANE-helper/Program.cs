@@ -17,16 +17,19 @@ namespace KTANE_helper
                     case "w":
                     case "wir":
                     case "wires":
+                        SetPromptScope("w");
                         Wires();
                         break;
                     case "m":
                     case "mem":
                     case "memory":
+                        SetPromptScope("m");
                         Memory();
                         break;
                     case "p":
                     case "pw":
                     case "password":
+                        SetPromptScope("p");
                         Password();
                         break;
                     case "quit":
@@ -36,6 +39,7 @@ namespace KTANE_helper
                         return;
                     default: break;
                 }
+                ResetPromptScope();
             }
         }
 
