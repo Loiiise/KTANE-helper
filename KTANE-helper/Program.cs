@@ -17,25 +17,28 @@ namespace KTANE_helper
                     case "w":
                     case "wir":
                     case "wires":
-                        SetPromptScope("w");
+                        SetPromptScope("wires");
                         Wires();
                         break;
                     case "m":
                     case "mem":
                     case "memory":
-                        SetPromptScope("m");
+                        SetPromptScope("memory");
                         Memory();
                         break;
                     case "p":
                     case "pw":
                     case "password":
-                        SetPromptScope("p");
+                        SetPromptScope("password");
                         Password();
                         break;
                     case "quit":
                     case "byebye":
                     case "die":
                     case "anyone dies with a clean sword, I'll rape his fucking corpse":
+                    case "I'm a fucking marine!":
+                    case "killkillkill":
+                    case "he's got a rocket lau...":
                         return;
                     default: break;
                 }

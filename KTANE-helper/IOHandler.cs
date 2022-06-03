@@ -41,7 +41,7 @@ namespace KTANE_helper
         {
             for (int i = 0; i < lines; ++i)
             {
-                Console.Write(">> ");
+                Prompt();
                 yield return Console.ReadLine();
             }
 
