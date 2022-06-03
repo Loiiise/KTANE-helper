@@ -13,11 +13,20 @@ namespace KTANE_helper
         internal static void SetPromptScope(string sc) => scope = sc;
         internal static void ResetPromptScope() => SetPromptScope(">");
 
+        internal static void Show(string message) => Console.WriteLine(message);
+
         internal static string Query(string message)
         {
-            Console.WriteLine(message);
+            Show(message);
             Prompt();
             return Console.ReadLine();
+        }
+
+        internal static string Query(string message, IEnumerable<string> allowedValues)
+        {
+            string result;
+            while (!allowedValues.Contains(result = Query(message))) Console.WriteLine("This value is not allowed!");
+            return result;
         }
 
         internal static int IntQuery(string message)
@@ -36,6 +45,9 @@ namespace KTANE_helper
             while (!allowedValues.Contains(result = IntQuery(message))) Console.WriteLine("This value is not allowed!");
             return result;
         }
+
+        internal static bool Ask(string question) 
+            => Query(question + " ((y)es/(n)o)", new string[] { "y", "yes", "yessir!", "n", "no", "fuck off", "" }).Contains('y');
 
         internal static IEnumerable<string> GetLines(int lines)
         {

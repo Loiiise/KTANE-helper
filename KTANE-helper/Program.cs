@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static KTANE_helper.IOHandler;
+using static KTANE_helper.Questions;
 
 namespace KTANE_helper
 {
@@ -20,6 +21,15 @@ namespace KTANE_helper
                         SetPromptScope("wires");
                         Wires();
                         break;
+                    case "b":
+                    case "but":
+                    case "button":
+                    case "boeton":
+                    case "THE BUTTON!!":
+                        SetPromptScope("button");
+                        Button();
+                        break;
+
                     case "m":
                     case "mem":
                     case "memory":
@@ -105,6 +115,38 @@ namespace KTANE_helper
                     if (wires[i] == colour)
                         return i;
                 return 0;
+            }
+        }
+
+        static void Button()
+        {
+            var data = Query("What are the colour (dutch first letter) and the text of the button.").Split(' ');
+            var colour = data[0].ToLower()[0];
+            var text = data[1].ToLower();
+
+            int batteries = -1;
+
+            if (colour == 'b' && text == "abort") HoldAndRelease();
+            else if (text == "detonate" && (batteries = Batteries()) > 1) PressAndRelease();
+            else if (colour == 'w' && LitIndicator("CAR")) HoldAndRelease();
+            else if ((batteries == -1 ? (batteries = Batteries()) : batteries) > 2 && LitIndicator("FRK")) PressAndRelease();
+            else if (colour == 'g') HoldAndRelease();
+            else if (colour == 'r' && text == "hold") PressAndRelease();
+            else HoldAndRelease();
+
+            void PressAndRelease() => Show("Press and immediately release the button.");
+            
+            void HoldAndRelease()
+            {
+                string colour = Query("What colour is the strip?");
+                _ = colour switch
+                {
+                    "b" => ReleaseWhen(4),
+                    "g" => ReleaseWhen(5),
+                    _   => ReleaseWhen(1),
+                };
+
+                void ReleaseWhen(int i) => Show($"Release when the countdown timer has a {i} in any position");
             }
         }
 
@@ -245,14 +287,5 @@ namespace KTANE_helper
             }
             Console.WriteLine($"Password is {options.First()}");
         }
-        
-        // questionz?
-        static bool SerialNumberLastIsEven()
-        {
-            int digit = IntQuery("What is the last digit of the serial number?");
-            return digit % 2 == 0;
-        }
-
-        static bool SerialNumberLastIsOdd() => !SerialNumberLastIsEven();
     }
 }
