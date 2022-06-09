@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using static KTANE_helper.IOHandler;
-using static KTANE_helper.Questions;
 
 namespace KTANE_helper
 {
     class Program
     {
         static char Puzzle;
+        static Bomb bomb = new();
         static void Main(string[] args)
         {
             while (true)
@@ -128,12 +128,10 @@ namespace KTANE_helper
             var colour = data[0].ToLower()[0];
             var text = data[1].ToLower();
 
-            int batteries = -1;
-
             if (colour == 'b' && text == "abort") HoldAndRelease();
-            else if (text == "detonate" && (batteries = Batteries()) > 1) PressAndRelease();
-            else if (colour == 'w' && LitIndicator("CAR")) HoldAndRelease();
-            else if ((batteries == -1 ? (batteries = Batteries()) : batteries) > 2 && LitIndicator("FRK")) PressAndRelease();
+            else if (text == "detonate" && (bomb.Batteries()) > 1) PressAndRelease();
+            else if (colour == 'w' && bomb.LitIndicator("CAR")) HoldAndRelease();
+            else if (bomb.Batteries() > 2 && bomb.LitIndicator("FRK")) PressAndRelease();
             else if (colour == 'g') HoldAndRelease();
             else if (colour == 'r' && text == "hold") PressAndRelease();
             else HoldAndRelease();
