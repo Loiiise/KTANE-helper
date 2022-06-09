@@ -32,7 +32,7 @@ namespace KTANE_helper
                     case "k":
                     case "keypad":
                         SetPromptScope("keypad");
-                        Keypad();
+                        Keypad.Solve();
                         break;
                     case "m":
                     case "mem":
@@ -151,62 +151,7 @@ namespace KTANE_helper
             }
         }
 
-        static void Keypad()
-        {
-            // todo hardcode all columns and return right one based on GetColumn()
-
-
-            int GetColumn()
-            {
-                var dict = new Dictionary<string, List<int>>
-                {
-                    { "o", new List<int> { 0, 1 } }, 
-                    { "a", new List<int> { 0 } }, 
-                    { "lambda", new List<int> { 0, 2 } }, 
-                    { "n", new List<int> { 0 } }, 
-                    { "spin", new List<int> { 0, 3 } }, 
-                    { "h", new List<int> { 0, 1 } }, 
-                    { "cc", new List<int> { 0, 1 } }, 
-                    { "\"e", new List<int> { 1, 5 } }, 
-                    { "krul", new List<int> { 1, 2 } }, 
-                    { "ster", new List<int> { 1, 2 } }, 
-                    { "?", new List<int> { 1, 3 } }, 
-                    { "cr", new List<int> { 2 } }, 
-                    { "w", new List<int> { 2 } }, 
-                    { "kk", new List<int> { 2, 3 } }, 
-                    { "r", new List<int> { 2 } }, 
-                    { "6", new List<int> { 3, 5 } },
-                    { "p", new List<int> { 3, 4 } },
-                    { "b", new List<int> { 3, 4 } },
-                    { ":)", new List<int> { 3, 4 } },
-                    { "psi", new List<int> { 4, 5 } },
-                    { "c", new List<int> { 4 } },
-                    { "slang", new List<int> { 4 } },
-                    { "gevulde ster", new List<int> { 4 } },
-                    { "=", new List<int> { 5 } },
-                    { "ae", new List<int> { 5 } },
-                    { "grote n", new List<int> { 5 } },
-                    { "omega", new List<int> { 5 } },
-                };
-
-                var key = Query("What symbol do you see?", dict.Keys);
-                var options = dict[key];
-
-                if (options.Count() == 1) return options.First();
-
-                return key switch
-                {
-                    "o" => AskOption("", options),
-                    // todo implement all specific questions
-                };
-            }
-
-            int AskOption(string message, List<int> options)
-            {
-                if (options.Count != 2) throw new ArgumentException();
-                return Ask(message) ? options[0] : options[1];
-            }
-        }
+        // Keypad
 
         static void Memory()
         {

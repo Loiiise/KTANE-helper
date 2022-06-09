@@ -6,4 +6,8 @@
     <RootNamespace>KTANE_helper</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>
