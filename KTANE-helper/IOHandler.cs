@@ -22,7 +22,7 @@ namespace KTANE_helper
             return Console.ReadLine();
         }
 
-        internal static string Query(string message, IEnumerable<string> allowedValues)
+        internal static string Query(string message, IEnumerable<string> allowedValues) // todo add params
         {
             string result;
             while (!allowedValues.Contains(result = Query(message))) Console.WriteLine("This value is not allowed!");
@@ -39,7 +39,7 @@ namespace KTANE_helper
             return result;
         }
 
-        internal static int IntQuery(string message, IEnumerable<int> allowedValues)
+        internal static int IntQuery(string message, IEnumerable<int> allowedValues) // todo add params
         {
             int result;
             while (!allowedValues.Contains(result = IntQuery(message))) Console.WriteLine("This value is not allowed!");

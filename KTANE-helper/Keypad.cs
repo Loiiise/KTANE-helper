@@ -40,7 +40,7 @@ namespace KTANE_helper
 
         private static bool SeeAny(IEnumerable<Symbol> symbols) => Ask($"Do you see any of { DisplaySymbols(symbols) }\n");
 
-        private static string DisplaySymbols(IEnumerable<Symbol> symbols) => string.Join("", symbols.Select(s => "\n    " + GetSymbolString(s)));
+        private static string DisplaySymbols(IEnumerable<Symbol> symbols) => string.Join("", symbols.Select(s => "\n    " + GetSymbolString(s))); // todo make general
 
         private enum Symbol { O, A, Lambda, N, Spin, H, CMirrored, E, Krul, Ster, Questionmark, Copyright, W, KK, R, Zes, P, B, Smiley, Psi, C, Slang, SterGevuld, Equals, Ae, GroteN, Omega };
 

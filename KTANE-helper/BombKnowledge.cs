@@ -7,7 +7,7 @@ using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
 {
-    internal class Bomb
+    internal class BombKnowledge
     {
         private int? batteries;
 
@@ -34,5 +34,10 @@ namespace KTANE_helper
 
             return present;
         }
+
+        private bool? serialNumberContainsVowel;
+        internal bool SerialNumberContainsVowel() => serialNumberContainsVowel.HasValue
+            ? serialNumberContainsVowel.Value
+            : (serialNumberContainsVowel = Ask("Does the serial number contain a vowel?")).Value;
     }
 }

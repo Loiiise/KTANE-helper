@@ -8,7 +8,7 @@ namespace KTANE_helper
     class Program
     {
         static char Puzzle;
-        static Bomb bomb = new();
+        static BombKnowledge bomb = new();
         static void Main(string[] args)
         {
             while (true)
@@ -33,6 +33,11 @@ namespace KTANE_helper
                     case "keypad":
                         SetPromptScope("keypad");
                         Keypad.Solve();
+                        break;
+                    case "simon":
+                    case "simonsays":
+                        SetPromptScope("simonsays");
+                        SimonSays.Solve(bomb);
                         break;
                     case "m":
                     case "mem":
@@ -84,32 +89,32 @@ namespace KTANE_helper
                     else Cut(lastWire);
                     return;
                 case 4:
-                    if (redWires > 1 && SerialNumberLastIsOdd()) CutLast('r');
+                    if (redWires > 1 && bomb.SerialNumberLastDigitOdd()) CutLast('r');
                     else if (wires.Last() == 'g' && redWires == 0 || blueWires == 1) Cut(1);
                     else if (yellowWires > 1) Cut(lastWire);
                     else Cut(2);
                     return;
                 case 5:
-                    if (lastWireColour == 'b' && SerialNumberLastIsOdd()) Cut(4);
+                    if (lastWireColour == 'b' && bomb.SerialNumberLastDigitOdd()) Cut(4);
                     else if (redWires == 1 && yellowWires <= 1) Cut(1);
                     else if (blackWires == 0) Cut(2);
                     else Cut(1);
                     return;
                 case 6:
-                    if (yellowWires == 0 && SerialNumberLastIsOdd()) Cut(3);
+                    if (yellowWires == 0 && bomb.SerialNumberLastDigitOdd()) Cut(3);
                     else if (yellowWires == 1 && whiteWires > 1) Cut(4);
                     else if (redWires == 0) Cut(lastWire);
                     else Cut(4);
                     return;
                 default:
-                    Console.WriteLine(".... idiot");
+                    Show(".... idiot");
                     Wires();
                     return;
             }
             
             void Cut(int wire)
             {
-                Console.WriteLine($"Cut the {PositionWord(wire)} wire");
+                Show($"Cut the {PositionWord(wire)} wire");
             }
             void CutLast(char colour) => Cut(LastIndex(colour));
 
@@ -150,6 +155,8 @@ namespace KTANE_helper
         }
 
         // Keypad
+
+        // SimonSays
 
         static void Memory()
         {
