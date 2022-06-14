@@ -13,6 +13,7 @@ namespace KTANE_helper
         {
             while (true)
             {
+                // todo refactor
                 switch (Query("What do you want to do next?"))
                 {
                     case "w":
@@ -72,7 +73,7 @@ namespace KTANE_helper
             int amount = wires.Length;
             int lastWire = amount - 1;
 
-            int redWires = wires.Where(w => w == 'r').Count();
+            int redWires = wires.Where(w => w == 'r').Count(); // refactor to wires.Count(predicate)
             int whiteWires = wires.Where(w => w == 'w').Count();
             int blueWires = wires.Where(w => w == 'b').Count();
             int blackWires = wires.Where(w => w == 'z').Count();
@@ -276,24 +277,49 @@ namespace KTANE_helper
 
         static void Password()
         {
-            var options = new List<string> { "about", "after", "again", "below", "could", "every", "first", "found", "great", "house", "large", "learn", "never", "other", "place", "plant", "point", "right", "small", "sound", "spell", "still", "study", "their", "there", "these", "thing", "think", "three", "water", "where", "which", "world", "would", "write"};
+            var passwordOptions = new List<string> { "about", "after", "again", "below", "could", "every", "first", "found", "great", "house", "large", "learn", "never", "other", "place", "plant", "point", "right", "small", "sound", "spell", "still", "study", "their", "there", "these", "thing", "think", "three", "water", "where", "which", "world", "would", "write"};
 
             int currentLetter = 0;
+            bool found = false;
 
-            while (options.Count() > 1)
+            while (passwordOptions.Count() > 1)
             {
-                Console.WriteLine($"{options.Count()} options left! Give all 6 options for the next letter.");
-                var letters = GetLines(6).ToList();
-                options = options.Where(s => letters.Contains(s[currentLetter].ToString())).ToList();
+                var nextLetterOptions = new HashSet<string>(
+                    passwordOptions.Select(pw => pw[currentLetter].ToString())
+                    );
+
+                var currentLetterOptionsFound = new List<string>();
+
+                if (nextLetterOptions.Count() > 1)
+                {
+                    var msg = $"{passwordOptions.Count()} options left! What are the options for the {PositionWord(currentLetter + 1)} letter?";
+
+                    foreach (var letter in QueryMultiple(msg, n:6))
+                    {
+                        if (!nextLetterOptions.Contains(letter)) continue;
+
+                        currentLetterOptionsFound.Add(letter);
+                        nextLetterOptions.Remove(letter);
+
+                        if (!nextLetterOptions.Any()) break;
+                    }
+                }
+                else
+                {
+                    Show($"Skipping the {PositionWord(currentLetter + 1)} letter!");
+                    currentLetterOptionsFound.Add(nextLetterOptions.First());
+                }
+
+                passwordOptions = passwordOptions.Where(s => currentLetterOptionsFound.Contains(s[currentLetter].ToString())).ToList();
 
                 ++currentLetter;
             }
-            if (options.Count() == 0)
+            if (passwordOptions.Count() == 0)
             {
                 Console.WriteLine("You messed up!");
                 return;
             }
-            Console.WriteLine($"Password is {options.First()}");
+            Console.WriteLine($"Password is {passwordOptions.First()}");
         }
     }
 }

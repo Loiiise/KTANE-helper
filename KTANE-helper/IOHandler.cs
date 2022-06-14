@@ -29,6 +29,12 @@ namespace KTANE_helper
             return result;
         }
 
+        internal static IEnumerable<string> QueryMultiple(string message, int n)
+        {
+            Show(message);
+            return GetLines(n);
+        }
+
         internal static int IntQuery(string message)
         {
             int result;
@@ -56,23 +62,18 @@ namespace KTANE_helper
                 Prompt();
                 yield return Console.ReadLine();
             }
-
         }
 
-        internal static string PositionWord(int p)
+        internal static string PositionWord(int p) => p switch
         {
-            return p switch
-            {
-                0 => "zeroeth",
-                1 => "first",
-                2 => "second",
-                3 => "third",
-                4 => "fourth",
-                5 => "fifth",
-                6 => "sixth",
-                _ => "i cannot count this high, wtf"
-            };
-        }
-
+            0 => "zeroeth",
+            1 => "first",
+            2 => "second",
+            3 => "third",
+            4 => "fourth",
+            5 => "fifth",
+            6 => "sixth",
+            _ => $"{p}th"
+        };
     }
 }
