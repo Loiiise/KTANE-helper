@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KTANE_helper.Solvers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,9 @@ using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
 {
-    internal static class Keypad
+    internal class KeypadSolver : Solvable<KeypadSolver>
     {
-        internal static void Solve()
+        internal override void Solve(BombKnowledge bk)
         {
             var resultColumn = GetColumn();
             Show($"Solution found! Your result column is: {DisplaySymbols(resultColumn)}");

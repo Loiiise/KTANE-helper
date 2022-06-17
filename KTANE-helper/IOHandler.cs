@@ -8,10 +8,18 @@ namespace KTANE_helper
 {
     internal static class IOHandler
     {
-        private static string scope = ">";
-        internal static void Prompt() => Console.Write($"{scope}> ");
-        internal static void SetPromptScope(string sc) => scope = sc;
-        internal static void ResetPromptScope() => SetPromptScope(">");
+        private static Stack<string> scopeStack = new();
+        internal static void Prompt()
+        {
+            var scope = scopeStack.Any() ? scopeStack.Peek() : ">";
+
+            Console.Write($"{scope}> ");
+        }
+        internal static void PromptScopeUp(string sc) => scopeStack.Push(sc);
+        internal static void PromptScopeDown()
+        {
+            if (scopeStack.Count > 0) scopeStack.Pop();
+        }
 
         internal static void Show(string message) => Console.WriteLine(message);
 
@@ -22,7 +30,7 @@ namespace KTANE_helper
             return Console.ReadLine();
         }
 
-        internal static string Query(string message, IEnumerable<string> allowedValues) // todo add params
+        internal static string Query(string message, IEnumerable<string> allowedValues)
         {
             string result;
             while (!allowedValues.Contains(result = Query(message))) Console.WriteLine("This value is not allowed!");
@@ -45,7 +53,7 @@ namespace KTANE_helper
             return result;
         }
 
-        internal static int IntQuery(string message, IEnumerable<int> allowedValues) // todo add params
+        internal static int IntQuery(string message, IEnumerable<int> allowedValues)
         {
             int result;
             while (!allowedValues.Contains(result = IntQuery(message))) Console.WriteLine("This value is not allowed!");

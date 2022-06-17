@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KTANE_helper.Solvers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,9 @@ using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
 {
-    internal static class SimonSays // todo add interface ISolvable
+    internal class SimonSaysSolver : Solvable<SimonSaysSolver>
     {
-        internal static void Solve(BombKnowledge bk)
+        internal override void Solve(BombKnowledge bk)
         {
             bool noVowel = !bk.SerialNumberContainsVowel();
             int strikes = IntQuery("How many strikes do you have?", new List<int> { 0, 1, 2 });
