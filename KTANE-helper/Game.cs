@@ -34,6 +34,7 @@ namespace KTANE_helper
             { InputToken.Button, new() { "b", "but", "button", "boeton", "THE BUTTON!!" } },
             { InputToken.Keypad, new() { "k", "keypad" } },
             { InputToken.SimonSays, new() { "simon", "simonsays" } },
+            { InputToken.WhosOnFirst, new() { "wof", "whosonfirst", "weirdbuttons", "samewords", "words" } },
             { InputToken.Memory, new() { "m", "mem", "memory" } },
             { InputToken.Password, new() { "p", "pw", "password" } },
             
@@ -90,6 +91,9 @@ namespace KTANE_helper
                 case InputToken.SimonSays:
                     SimonSaysSolver.GetInstance().Solve(bk); 
                     break;
+                case InputToken.WhosOnFirst:
+                    WhosOnFirstSolver.GetInstance().Solve(bk);
+                    break;
                 case InputToken.Memory:
                     MemorySolver.GetInstance().Solve(bk); 
                     break;
@@ -106,7 +110,7 @@ namespace KTANE_helper
 
         private enum InputToken
         {
-            Quit, NextBomb, Wires, Button, Keypad, SimonSays, Memory, Password
+            Quit, NextBomb, Wires, Button, Keypad, SimonSays, WhosOnFirst, Memory, Password
         }
     }
 }

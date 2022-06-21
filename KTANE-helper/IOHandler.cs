@@ -15,6 +15,7 @@ namespace KTANE_helper
 
             Console.Write($"{scope}> ");
         }
+        internal static void PromptScopeAdd(string str) => scopeStack.Push( scopeStack.Peek() + $" ({str})" );
         internal static void PromptScopeUp(string sc) => scopeStack.Push(sc);
         internal static void PromptScopeDown()
         {
@@ -33,7 +34,8 @@ namespace KTANE_helper
         internal static string Query(string message, IEnumerable<string> allowedValues)
         {
             string result;
-            while (!allowedValues.Contains(result = Query(message))) Console.WriteLine("This value is not allowed!");
+            var lowerAllowed = allowedValues.Select(x => x.ToLower());
+            while (!lowerAllowed.Contains((result = Query(message)).ToLower())) Console.WriteLine("This value is not allowed!");
             return result;
         }
 
