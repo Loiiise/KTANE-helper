@@ -37,7 +37,7 @@ namespace KTANE_helper
             { InputToken.WhosOnFirst, new() { "wof", "whosonfirst", "weirdbuttons", "samewords", "words" } },
             { InputToken.Memory, new() { "m", "mem", "memory" } },
             { InputToken.Password, new() { "p", "pw", "password" } },
-            
+            { InputToken.MorseCode, new() { "mc", "morse", "morsecode" } },
         };
 
         public Game()
@@ -100,6 +100,9 @@ namespace KTANE_helper
                 case InputToken.Password:
                     PasswordSolver.GetInstance().Solve(bk); 
                     break;
+                case InputToken.MorseCode:
+                    MorseCodeSolver.GetInstance().Solve(bk);
+                    break;
                 default:
                     Show("This solver is not implemented. You're on your own!");
                     break;
@@ -110,7 +113,7 @@ namespace KTANE_helper
 
         private enum InputToken
         {
-            Quit, NextBomb, Wires, Button, Keypad, SimonSays, WhosOnFirst, Memory, Password
+            Quit, NextBomb, Wires, Button, Keypad, SimonSays, WhosOnFirst, Memory, Password, MorseCode
         }
     }
 }
