@@ -1,9 +1,6 @@
 ﻿using KTANE_helper.Solvers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
@@ -33,7 +30,7 @@ namespace KTANE_helper
                 "g" => Colour.Green,
                 "b" => Colour.Blue,
                 "y" => Colour.Yellow,
-                _   => Colour.Nothing,
+                _ => Colour.Nothing,
             };
 
             return colour != Colour.Nothing;

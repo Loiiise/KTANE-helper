@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KTANE_helper
 {
@@ -15,7 +13,7 @@ namespace KTANE_helper
 
             Console.Write($"{scope}> ");
         }
-        internal static void PromptScopeAdd(string str) => scopeStack.Push( scopeStack.Peek() + $" ({str})" );
+        internal static void PromptScopeAdd(string str) => scopeStack.Push(scopeStack.Peek() + $" ({str})");
         internal static void PromptScopeUp(string sc) => scopeStack.Push(sc);
         internal static void PromptScopeDown()
         {
@@ -62,7 +60,7 @@ namespace KTANE_helper
             return result;
         }
 
-        internal static bool Ask(string question) 
+        internal static bool Ask(string question)
             => Query(question + " ((y)es/(n)o)", new string[] { "y", "yes", "yessir!", "n", "no", "fuck off", "" }).Contains('y');
 
         internal static IEnumerable<string> GetLines(int lines)

@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
@@ -23,7 +21,7 @@ namespace KTANE_helper
             var candidates = symbolToColumn[GetSymbolFromString(keyString)];
 
             if (candidates.Count() == 1) return columnToSymbol[candidates.First()];
-            
+
             int a = candidates.First();
             int b = candidates.Last();
             return IsColumn(a, b) ? columnToSymbol[a] : columnToSymbol[b];
@@ -39,7 +37,7 @@ namespace KTANE_helper
             return SeeAny(uniqueA);
         }
 
-        private static bool SeeAny(IEnumerable<Symbol> symbols) => Ask($"Do you see any of { DisplaySymbols(symbols) }\n");
+        private static bool SeeAny(IEnumerable<Symbol> symbols) => Ask($"Do you see any of {DisplaySymbols(symbols)}\n");
 
         private static string DisplaySymbols(IEnumerable<Symbol> symbols) => string.Join("", symbols.Select(s => "\n    " + GetSymbolString(s))); // todo make general
 

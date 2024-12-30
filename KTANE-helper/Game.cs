@@ -1,9 +1,5 @@
 ﻿using KTANE_helper.Solvers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper
@@ -49,7 +45,7 @@ namespace KTANE_helper
                 foreach (var value in values)
                     tokenMap[value] = token;
             }
-                
+
             Play();
         }
 
@@ -80,25 +76,25 @@ namespace KTANE_helper
             switch (puzzle)
             {
                 case InputToken.Wires:
-                    WireSolver.GetInstance().Solve(bk); 
+                    WireSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.Button:
-                    ButtonSolver.GetInstance().Solve(bk); 
+                    ButtonSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.Keypad:
-                    KeypadSolver.GetInstance().Solve(bk); 
+                    KeypadSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.SimonSays:
-                    SimonSaysSolver.GetInstance().Solve(bk); 
+                    SimonSaysSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.WhosOnFirst:
                     WhosOnFirstSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.Memory:
-                    MemorySolver.GetInstance().Solve(bk); 
+                    MemorySolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.Password:
-                    PasswordSolver.GetInstance().Solve(bk); 
+                    PasswordSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.MorseCode:
                     MorseCodeSolver.GetInstance().Solve(bk);
@@ -113,7 +109,19 @@ namespace KTANE_helper
 
         private enum InputToken
         {
-            Quit, NextBomb, Wires, Button, Keypad, SimonSays, WhosOnFirst, Memory, Password, MorseCode
+            Quit,
+            NextBomb,
+            Wires,
+            Button,
+            Keypad,
+            SimonSays,
+            WhosOnFirst,
+            Memory,
+            MorseCode,
+            // ComplicatedWires,
+            // ABCWire,
+            // Maze,
+            Password,
         }
     }
 }

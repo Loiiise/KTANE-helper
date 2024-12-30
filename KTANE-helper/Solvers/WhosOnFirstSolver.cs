@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper.Solvers
@@ -94,7 +92,7 @@ namespace KTANE_helper.Solvers
 
             Show("The first appearing word in the following list is the button that should be pressed.");
 
-            foreach (var result in wordMap[inputWord]) Show(GetWordString(result));            
+            foreach (var result in wordMap[inputWord]) Show(GetWordString(result));
         }
 
         private static string GetWordString(Word word) => word switch
@@ -113,34 +111,34 @@ namespace KTANE_helper.Solvers
 
         private static IEnumerable<Word> allWords = Enum.GetValues(typeof(Word)).Cast<Word>();
         private static IEnumerable<string> allWordsStrings = allWords.Select(w => GetWordString(w));
-        private enum Word 
+        private enum Word
         {
             EmptyString,
-            
-            BLANK, 
+
+            BLANK,
             C,
             CEE,
-            DONE, 
+            DONE,
             DISPLAY,
-            FIRST, 
-            HOLD, 
+            FIRST,
+            HOLD,
             HOLDON,
             LED,
             LEAD,
             LEED,
-            LEFT, 
-            LIKE, 
-            MIDDLE, 
-            NEXT, 
+            LEFT,
+            LIKE,
+            MIDDLE,
+            NEXT,
             NO, // but damn close
-            NOTHING, 
-            OKAY, 
+            NOTHING,
+            OKAY,
             PRESS,
             RED,
             READ,
             REED,
-            READY, 
-            RIGHT, 
+            READY,
+            RIGHT,
             SAYS,
             SEE,
             SURE,
@@ -148,15 +146,15 @@ namespace KTANE_helper.Solvers
             THERE,
             THEYARE,
             THEYRE,
-            U, 
-            UHHH, 
-            UHHUH, 
-            UHUH, 
-            UR, 
-            WAIT, 
-            WHAT, 
-            WHATQ, 
-            YES, 
+            U,
+            UHHH,
+            UHHUH,
+            UHUH,
+            UR,
+            WAIT,
+            WHAT,
+            WHATQ,
+            YES,
             YOU,
             YOUARE,
             YOUR,
