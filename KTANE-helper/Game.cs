@@ -32,8 +32,9 @@ namespace KTANE_helper
             { InputToken.SimonSays, new() { "simon", "simonsays" } },
             { InputToken.WhosOnFirst, new() { "wof", "whosonfirst", "weirdbuttons", "samewords", "words" } },
             { InputToken.Memory, new() { "m", "mem", "memory" } },
-            { InputToken.Password, new() { "p", "pw", "password" } },
             { InputToken.MorseCode, new() { "mc", "morse", "morsecode" } },
+            { InputToken.ComplicatedWires, new() { "cw", "complicatedwires" } },
+            { InputToken.Password, new() { "p", "pw", "password" } },
         };
 
         public Game()
@@ -93,11 +94,14 @@ namespace KTANE_helper
                 case InputToken.Memory:
                     MemorySolver.GetInstance().Solve(bk);
                     break;
-                case InputToken.Password:
-                    PasswordSolver.GetInstance().Solve(bk);
-                    break;
                 case InputToken.MorseCode:
                     MorseCodeSolver.GetInstance().Solve(bk);
+                    break;
+                case InputToken.ComplicatedWires:
+                    ComplicatedWiresSolver.GetInstance().Solve(bk);
+                    break;
+                case InputToken.Password:
+                    PasswordSolver.GetInstance().Solve(bk);
                     break;
                 default:
                     Show("This solver is not implemented. You're on your own!");
@@ -118,7 +122,7 @@ namespace KTANE_helper
             WhosOnFirst,
             Memory,
             MorseCode,
-            // ComplicatedWires,
+            ComplicatedWires,
             // ABCWire,
             // Maze,
             Password,
