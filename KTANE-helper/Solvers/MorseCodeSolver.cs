@@ -83,6 +83,8 @@ namespace KTANE_helper.Solvers
 
             word = wordOptions[0];
 
+            Show($"There are {wordOptions.Count} left");
+
             return wordOptions.Count == 1;
         }
     }

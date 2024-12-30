@@ -32,6 +32,7 @@ namespace KTANE_helper.Solvers
                 Word.NOTHING or
                 Word.LED or
                 Word.THEYARE => "middle left",
+                Word.BLANK or
                 Word.READ or
                 Word.RED or
                 Word.YOU or
@@ -43,6 +44,7 @@ namespace KTANE_helper.Solvers
                 Word.LEED or
                 Word.THEYRE => "bottom left",
                 Word.DISPLAY or
+                Word.SAYS or
                 Word.NO or
                 Word.LEAD or
                 Word.HOLDON or
