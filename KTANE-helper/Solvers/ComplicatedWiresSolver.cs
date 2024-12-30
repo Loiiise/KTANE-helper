@@ -13,7 +13,7 @@ namespace KTANE_helper.Solvers
                 var userInput = Query("What is the state of the wire? (R for red, B for blue, S for star and L for LED).").ToUpper();
 
                 if (userInput.Length > 4 ||
-                    HasIllegalCharacters(userInput, 'R', 'B', 'S', 'L'))
+                    HasIllegalCharacters(userInput, 'R', 'B', 'S', 'L', 'W'))
                 {
                     break;
                 }
