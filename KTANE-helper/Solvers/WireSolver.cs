@@ -24,14 +24,14 @@ namespace KTANE_helper.Solvers
             {
                 case 3:
                     if (redWires == 0) Cut(2);
-                    else if (wires.Last() == 'w') Cut(lastWire);
+                    else if (wires.Last() == 'w') Cut(amount);
                     else if (blueWires > 1) CutLast('b');
-                    else Cut(lastWire);
+                    else Cut(amount);
                     return;
                 case 4:
                     if (redWires > 1 && bk.SerialNumberLastDigitOdd()) CutLast('r');
                     else if (wires.Last() == 'g' && redWires == 0 || blueWires == 1) Cut(1);
-                    else if (yellowWires > 1) Cut(lastWire);
+                    else if (yellowWires > 1) Cut(amount);
                     else Cut(2);
                     return;
                 case 5:
@@ -43,7 +43,7 @@ namespace KTANE_helper.Solvers
                 case 6:
                     if (yellowWires == 0 && bk.SerialNumberLastDigitOdd()) Cut(3);
                     else if (yellowWires == 1 && whiteWires > 1) Cut(4);
-                    else if (redWires == 0) Cut(lastWire);
+                    else if (redWires == 0) Cut(amount);
                     else Cut(4);
                     return;
                 default:
