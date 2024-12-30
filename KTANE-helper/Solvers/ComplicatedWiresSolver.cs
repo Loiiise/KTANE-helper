@@ -27,21 +27,8 @@ namespace KTANE_helper.Solvers
 
                 var instruction = GetInstructionFromState(state);
 
-                Console.WriteLine(ShouldICut(instruction, bk) ? _cutMessage : _dontCutMessage);
+                Show(ShouldICut(instruction, bk) ? _cutMessage : _dontCutMessage);
             }
-        }
-
-        private bool HasIllegalCharacters(string input, params char[] legalCharacters)
-        {
-            foreach (char c in input)
-            {
-                if (!legalCharacters.Contains(c))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private void AddPropertyIfCharacterPresent(ref WireProperties state, string userInput, char character, WireProperties propertyToAdd)

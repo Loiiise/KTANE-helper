@@ -83,5 +83,18 @@ namespace KTANE_helper
             6 => "sixth",
             _ => $"{p}th"
         };
+
+        internal static bool HasIllegalCharacters(string input, params char[] legalCharacters)
+        {
+            foreach (char c in input)
+            {
+                if (!legalCharacters.Contains(c))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

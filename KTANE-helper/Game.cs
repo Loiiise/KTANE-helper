@@ -26,14 +26,15 @@ namespace KTANE_helper
                 }
             },
             { InputToken.NextBomb, new() { "n", "next", "fuck this shit I'm out" } },
-            { InputToken.Wires, new() { "w", "wir", "wires" } },
+            { InputToken.Wires, new() { "w", "wir", "wires", "ahhhh, wire" } },
             { InputToken.Button, new() { "b", "but", "button", "boeton", "THE BUTTON!!" } },
             { InputToken.Keypad, new() { "k", "keypad" } },
-            { InputToken.SimonSays, new() { "simon", "simonsays" } },
+            { InputToken.SimonSays, new() { "ss", "simon", "simonsays" } },
             { InputToken.WhosOnFirst, new() { "wof", "whosonfirst", "weirdbuttons", "samewords", "words" } },
             { InputToken.Memory, new() { "m", "mem", "memory" } },
             { InputToken.MorseCode, new() { "mc", "morse", "morsecode" } },
             { InputToken.ComplicatedWires, new() { "cw", "complicatedwires" } },
+            { InputToken.WireSequences, new() { "ws", "wiresequences", "abc", "abcwires" } },
             { InputToken.Password, new() { "p", "pw", "password" } },
         };
 
@@ -100,6 +101,9 @@ namespace KTANE_helper
                 case InputToken.ComplicatedWires:
                     ComplicatedWiresSolver.GetInstance().Solve(bk);
                     break;
+                case InputToken.WireSequences:
+                    WireSequenceSolver.GetInstance().Solve(bk);
+                    break;
                 case InputToken.Password:
                     PasswordSolver.GetInstance().Solve(bk);
                     break;
@@ -123,7 +127,7 @@ namespace KTANE_helper
             Memory,
             MorseCode,
             ComplicatedWires,
-            // ABCWire,
+            WireSequences,
             // Maze,
             Password,
         }
