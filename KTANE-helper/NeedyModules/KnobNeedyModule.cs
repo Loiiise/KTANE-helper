@@ -23,7 +23,6 @@ namespace KTANE_helper.NeedyModules
             });
         }
 
-        private const string _undecidedString = nameof(_undecidedString);
         private const string _invalidInputResponse = "You provided invalid input, cancelling operation...";
     }
 }
