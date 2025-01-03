@@ -3,7 +3,7 @@ using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper.NeedyModules
 {
-    internal class KnobNeedyModule : Solvable<MazeSolver>
+    internal class KnobNeedyModule : Solvable<KnobNeedyModule>
     {
         internal override void Solve(BombKnowledge bk)
         {
