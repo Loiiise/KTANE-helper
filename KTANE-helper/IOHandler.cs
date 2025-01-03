@@ -60,6 +60,51 @@ namespace KTANE_helper
             return result;
         }
 
+        internal static (int, int) CoordinateQuery(string message) => CoordinateQuery(message, int.MinValue, int.MaxValue);
+        internal static (int, int) CoordinateQuery(string message, int minimalValue, int maximalValue)
+        {
+            while (true)
+            {
+                var line = Query(message);
+
+                if (IsCoordinates(line, out int x, out int y))
+                {
+                    if (x >= minimalValue && x <= maximalValue &&
+                        y >= minimalValue && y <= maximalValue)
+                    {
+                        return (x, y);
+                    }
+                    else
+                    {
+                        Show($"Both coordinates must be at least {minimalValue} and at most {maximalValue}");
+                    }
+                }
+
+                Show("Those are not valid coordinates. Make sure to separate them with a comma or a space.");
+            }
+
+            bool IsCoordinates(string line, out int x, out int y)
+            {
+                string[] parts;
+                if (line.Contains(','))
+                {
+                    parts = line.Split(',');
+                }
+                else
+                {
+                    parts = line.Split(' ');
+                }
+
+                x = -1;
+                y = -1;
+
+                return
+                    parts.Length >= 2 &&
+                    int.TryParse(parts[0], out x) &&
+                    int.TryParse(parts[1], out y);
+            }
+        }
+
         internal static bool Ask(string question)
             => Query(question + " ((y)es/(n)o)", new string[] { "y", "yes", "yessir!", "n", "no", "fuck off", "" }).Contains('y');
 

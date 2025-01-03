@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper.Solvers

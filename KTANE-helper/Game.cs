@@ -1,4 +1,4 @@
-﻿using KTANE_helper.Solvers;
+using KTANE_helper.Solvers;
 using System.Collections.Generic;
 using static KTANE_helper.IOHandler;
 
@@ -35,6 +35,7 @@ namespace KTANE_helper
             { InputToken.MorseCode, new() { "mc", "morse", "morsecode" } },
             { InputToken.ComplicatedWires, new() { "cw", "complicatedwires" } },
             { InputToken.WireSequences, new() { "ws", "wiresequences", "abc", "abcwires" } },
+            { InputToken.Maze, new() { "m", "maze", "maize", "mais", "mees", "mice" } },
             { InputToken.Password, new() { "p", "pw", "password" } },
         };
 
@@ -104,6 +105,9 @@ namespace KTANE_helper
                 case InputToken.WireSequences:
                     WireSequenceSolver.GetInstance().Solve(bk);
                     break;
+                case InputToken.Maze:
+                    MazeSolver.GetInstance().Solve(bk);
+                    break;
                 case InputToken.Password:
                     PasswordSolver.GetInstance().Solve(bk);
                     break;
@@ -128,7 +132,7 @@ namespace KTANE_helper
             MorseCode,
             ComplicatedWires,
             WireSequences,
-            // Maze,
+            Maze,
             Password,
         }
     }
