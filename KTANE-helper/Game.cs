@@ -1,3 +1,4 @@
+using KTANE_helper.NeedyModules;
 using KTANE_helper.Solvers;
 using System.Collections.Generic;
 using static KTANE_helper.IOHandler;
@@ -37,6 +38,7 @@ namespace KTANE_helper
             { InputToken.WireSequences, new() { "ws", "wiresequences", "abc", "abcwires" } },
             { InputToken.Maze, new() { "m", "maze", "maize", "mais", "mees", "mice" } },
             { InputToken.Password, new() { "p", "pw", "password" } },
+            { InputToken.NeedyKnob, new() { "nn", "needy", "knobs", "needyknob" } },
         };
 
         public Game()
@@ -111,6 +113,9 @@ namespace KTANE_helper
                 case InputToken.Password:
                     PasswordSolver.GetInstance().Solve(bk);
                     break;
+                case InputToken.NeedyKnob:
+                    KnobNeedyModule.GetInstance().Solve(bk);
+                    break;
                 default:
                     Show("This solver is not implemented. You're on your own!");
                     break;
@@ -134,6 +139,7 @@ namespace KTANE_helper
             WireSequences,
             Maze,
             Password,
+            NeedyKnob,
         }
     }
 }
