@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static KTANE_helper.IOHandler;
 
@@ -8,6 +8,10 @@ namespace KTANE_helper.Solvers
     {
         internal override void Solve(BombKnowledge bk)
         {
+            int _redCounter = 0;
+            int _blueCounter = 0;
+            int _blackCounter = 0;
+
             while (true)
             {
                 var userInput = Query("Input the wires in order of starting point by giving their colour and endpoint connection. (R = Red, B = Blue, Z = Black)").ToUpper();
@@ -75,10 +79,6 @@ namespace KTANE_helper.Solvers
                 yield return new(colour, type);
             }
         }
-
-        private int _redCounter = 0;
-        private int _blueCounter = 0;
-        private int _blackCounter = 0;
 
         private readonly WireSequenceType[] _redMap = new WireSequenceType[]
         {
