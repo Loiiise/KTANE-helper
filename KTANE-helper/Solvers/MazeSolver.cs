@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System;
 using static KTANE_helper.IOHandler;
 
 namespace KTANE_helper.Solvers
@@ -103,10 +104,20 @@ namespace KTANE_helper.Solvers
         internal static int LinearCoordinate(int x, int y) => (y - 1) * Height + (x - 1);
 
         internal static Maze GetMaze((int, int) coordinates) => GetMaze(coordinates.Item1, coordinates.Item2);
-        internal static Maze GetMaze(int x, int y)
-        {
-            return AllMazes[0];
-        }
+        internal static Maze GetMaze(int x, int y) => AllMazes[
+            (x, y) switch
+            {
+                (1, 2) or (6, 3) => 0,
+                (2, 4) or (5, 2) => 1,
+                (4, 4) or (6, 4) => 2,
+                (1, 1) or (1, 4) => 3,
+                (4, 6) or (5, 3) => 4,
+                (3, 5) or (5, 1) => 5,
+                (2, 1) or (2, 6) => 6,
+                (3, 4) or (4, 1) => 7,
+                (1, 5) or (3, 2) => 8,
+                _ => throw new ArgumentException(),
+            }];
 
         public static readonly Maze[] AllMazes = new Maze[9]
         {
