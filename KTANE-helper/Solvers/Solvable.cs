@@ -2,12 +2,12 @@
 
 namespace KTANE_helper.Solvers
 {
-    internal abstract class Solvable<Solver> where Solver : new()
+    public abstract class Solvable<Solver> where Solver : new()
     {
         protected static Solver instance;
         protected static IIOHandler _ioHandler;
 
-        internal static Solver GetInstance(IIOHandler ioHandler)
+        public static Solver GetInstance(IIOHandler ioHandler)
         {
             _ioHandler = ioHandler;
 
@@ -16,6 +16,6 @@ namespace KTANE_helper.Solvers
             return instance;
         }
 
-        internal abstract void Solve(BombKnowledge bk);
+        public abstract void Solve(BombKnowledge bk);
     }
 }

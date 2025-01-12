@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace KTANE_helper;
 
-internal class BombKnowledge
+public class BombKnowledge
 {
-    internal BombKnowledge(IIOHandler ioHandler)
+    public BombKnowledge(IIOHandler ioHandler)
     {
         _ioHandler = ioHandler;
     }
