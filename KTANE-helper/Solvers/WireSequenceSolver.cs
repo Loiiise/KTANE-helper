@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using static KTANE_helper.IOHandler;
 
@@ -15,7 +16,6 @@ namespace KTANE_helper.Solvers
             while (true)
             {
                 var userInput = Query("Input the wires in order of starting point by giving their colour and endpoint connection. (R = Red, B = Blue, Z = Black)").ToUpper();
-                var wireCounter = 0;
 
                 if (userInput.Length > 6 ||
                     HasIllegalCharacters(userInput, 'R', 'B', 'Z', 'A', 'C'))
@@ -23,35 +23,40 @@ namespace KTANE_helper.Solvers
                     break;
                 }
 
+                List<bool> cut = new();
+
                 foreach (var wire in GetWires(userInput))
                 {
-                    WireSequenceType cutIfIsThisOne;
+                    var cutIfIsThisOne = wire.Colour switch
+                    {
+                        WireSequenceColour.Red => _redMap[_redCounter++],
+                        WireSequenceColour.Blue => _blueMap[_blueCounter++],
+                        WireSequenceColour.Black => _blackMap[_blackCounter++],
+                        _ => throw new ArgumentException(),
+                    };
 
-                    switch (wire.Colour)
-                    {
-                        case WireSequenceColour.Red:
-                            cutIfIsThisOne = _redMap[_redCounter++];
-                            break;
-                        case WireSequenceColour.Blue:
-                            cutIfIsThisOne = _blueMap[_blueCounter++];
-                            break;
-                        case WireSequenceColour.Black:
-                            cutIfIsThisOne = _blackMap[_blackCounter++];
-                            break;
-                        default: throw new ArgumentException();
-                    }
+                    cut.Add(cutIfIsThisOne.HasFlag(wire.Type));
+                }
 
-                    if (cutIfIsThisOne.HasFlag(wire.Type))
-                    {
-                        Show($"Cut the {PositionWord(++wireCounter)} wire.");
-                    }
-                    else
-                    {
-                        Show($"DON'T cut the {PositionWord(++wireCounter)} wire.");
-                    }
+                // If everything is true
+                if (cut.All(x => x)) Show("Cut EVERYTHING");
+                // If everything is false
+                else if (cut.All(x => !x)) Show("Cut NOTHING");
+                // If the first thing is true and the rest is false
+                else if (cut.First() && cut.Skip(1).All(x => !x)) Show("Cut the FIRST wire");
+                // If the last thing is true and the rest is false
+                else if (cut.Last() && cut.Take(cut.Count - 1).All(x => !x)) Show("Cut the LAST wire");
+                else
+                {
+                    var wireIndices = cut 
+                        .Zip(Enumerable.Range(1, cut.Count)) // Zip the booleans with their index
+                        .Where(x => x.First)                 // Filter only those tuples where the boolean is true
+                        .Select(x => x.Second);              // Throw away the boolean and keep just the index
+
+                    // Show generic semi-summarized output
+                    Show($"Cut {Pluralise("wire", wireIndices)} {ShowSequence(wireIndices)}");
                 }
             }
-
         }
 
         private IEnumerable<Wire> GetWires(string input)
