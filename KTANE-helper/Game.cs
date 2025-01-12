@@ -114,7 +114,7 @@ namespace KTANE_helper
                     PasswordSolver.GetInstance().Solve(bk);
                     break;
                 case InputToken.NeedyKnob:
-                    KnobNeedyModule.GetInstance().Solve(bk);
+                    NeedyKnob.GetInstance().Solve(bk);
                     break;
                 default:
                     Show("This solver is not implemented. You're on your own!");
