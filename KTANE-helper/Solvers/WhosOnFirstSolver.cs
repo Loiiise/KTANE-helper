@@ -1,4 +1,8 @@
-﻿namespace KTANE_helper.Solvers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace KTANE_helper.Solvers;
 
 internal class WhosOnFirstSolver : Solvable<WhosOnFirstSolver>
 {

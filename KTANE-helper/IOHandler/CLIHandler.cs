@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.IOHandler;
+﻿using System;
+
+namespace KTANE_helper.IOHandler;
 
 public class CLIHandler : IOHandler
 {

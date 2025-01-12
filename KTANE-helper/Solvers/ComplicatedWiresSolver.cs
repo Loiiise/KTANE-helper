@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.Solvers;
+﻿using System;
+
+namespace KTANE_helper.Solvers;
 
 internal class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
 {

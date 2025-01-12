@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.IOHandler;
+﻿using System.Collections.Generic;
+
+namespace KTANE_helper.IOHandler;
 
 public interface IIOHandler
 {

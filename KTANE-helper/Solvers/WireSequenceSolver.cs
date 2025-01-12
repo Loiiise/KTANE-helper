@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace KTANE_helper.Solvers;
 
 internal class WireSequenceSolver : Solvable<WireSequenceSolver>

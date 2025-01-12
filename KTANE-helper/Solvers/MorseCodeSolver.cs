@@ -1,4 +1,7 @@
-﻿namespace KTANE_helper.Solvers;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace KTANE_helper.Solvers;
 
 internal class MorseCodeSolver : Solvable<MorseCodeSolver>
 {
