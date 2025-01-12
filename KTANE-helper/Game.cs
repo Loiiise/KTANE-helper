@@ -81,40 +81,40 @@ class Game
         switch (puzzle)
         {
             case InputToken.Wires:
-                WireSolver.GetInstance().Solve(bk);
+                WireSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.Button:
-                ButtonSolver.GetInstance().Solve(bk);
+                ButtonSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.Keypad:
-                KeypadSolver.GetInstance().Solve(bk);
+                KeypadSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.SimonSays:
-                SimonSaysSolver.GetInstance().Solve(bk);
+                SimonSaysSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.WhosOnFirst:
-                WhosOnFirstSolver.GetInstance().Solve(bk);
+                WhosOnFirstSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.Memory:
-                MemorySolver.GetInstance().Solve(bk);
+                MemorySolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.MorseCode:
-                MorseCodeSolver.GetInstance().Solve(bk);
+                MorseCodeSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.ComplicatedWires:
-                ComplicatedWiresSolver.GetInstance().Solve(bk);
+                ComplicatedWiresSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.WireSequences:
-                WireSequenceSolver.GetInstance().Solve(bk);
+                WireSequenceSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.Maze:
-                MazeSolver.GetInstance().Solve(bk);
+                MazeSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.Password:
-                PasswordSolver.GetInstance().Solve(bk);
+                PasswordSolver.GetInstance(_ioHandler).Solve(bk);
                 break;
             case InputToken.NeedyKnob:
-                NeedyKnob.GetInstance().Solve(bk);
+                NeedyKnob.GetInstance(_ioHandler).Solve(bk);
                 break;
             default:
                 _ioHandler.ShowLine("This solver is not implemented. You're on your own!");
