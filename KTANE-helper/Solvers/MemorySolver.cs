@@ -95,21 +95,21 @@ namespace KTANE_helper.Solvers
                             4 => LabelStage(3, ask: false),
                         };
 
-                        Console.WriteLine("Hurrah! Thou hast donest itst!");
+                        Show("Hurrah! Thou hast donest itst!");
                         return;
                 }
             }
 
             int Position(int position, bool ask = true)
             {
-                Console.WriteLine($"Press the button in the {PositionWord(position)} position");
+                Show($"Press the button in the {PositionWord(position)} position");
                 return ask ? What("label") : -1;
             }
             int PositionStage(int stage, bool ask = true) => Position(positions[stage], ask);
 
             int Label(int label, bool ask = true)
             {
-                Console.WriteLine($"Press the button labeled \"{label}\"");
+                Show($"Press the button labeled \"{label}\"");
                 return ask ? What("position") : -1;
             }
             int LabelStage(int stage, bool ask = true) => Label(labels[stage], ask);
