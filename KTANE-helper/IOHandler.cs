@@ -129,6 +129,35 @@ namespace KTANE_helper
             _ => $"{p}th"
         };
 
+        internal static string Pluralise<T>(string word, IEnumerable<T> collection)
+            => Pluralise(word, collection.Count());
+
+        internal static string Pluralise(string word, int count)
+        {
+            // -1 and 1 item both should not pluralise their word
+            if (Math.Abs(count) == 1) return word;
+
+            // 2, 3, 4, etc. items
+            return word + "s";
+        }
+
+        internal static string ShowSequence<T>(IEnumerable<T> collection)
+        {
+            // Return if the collection is empty
+            if (!collection.Any()) return "";
+
+            // Take all elements except the last item
+            var notLastPart = collection.Take(collection.Count() - 1);
+            string last = collection.Last().ToString();
+
+            // If there are no preceding items, return just the last item
+            if (!notLastPart.Any()) return last.ToString();
+            // Else, return the first few separated by a comma, followed by "and {last}"
+            else return string.Join(" and ", new List<string>{ string.Join(", ", notLastPart), last});
+            
+
+        }
+
         internal static bool HasIllegalCharacters(string input, params char[] legalCharacters)
         {
             foreach (char c in input)
