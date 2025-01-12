@@ -49,10 +49,10 @@ namespace KTANE_helper
             }
             if (passwordOptions.Count() == 0)
             {
-                Console.WriteLine("You messed up!");
+                Show("You messed up!");
                 return;
             }
-            Console.WriteLine($"Password is {passwordOptions.First()}");
+            Show($"Password is {passwordOptions.First()}");
         }
     }
 }
