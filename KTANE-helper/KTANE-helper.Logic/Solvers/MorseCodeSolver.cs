@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace KTANE_helper.Solvers;
+namespace KTANE_helper.Logic.Solvers;
 
 public class MorseCodeSolver : Solvable<MorseCodeSolver>
 {

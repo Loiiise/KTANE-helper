@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace KTANE_helper.Solvers;
+namespace KTANE_helper.Logic.Solvers;
 
 public class WireSolver : Solvable<WireSolver>
 {

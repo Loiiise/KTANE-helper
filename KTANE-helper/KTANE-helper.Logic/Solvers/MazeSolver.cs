@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KTANE_helper.Solvers;
+namespace KTANE_helper.Logic.Solvers;
 
 public class MazeSolver : Solvable<MazeSolver>
 {

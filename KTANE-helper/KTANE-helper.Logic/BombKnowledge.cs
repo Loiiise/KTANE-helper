@@ -1,7 +1,6 @@
-﻿using KTANE_helper.IOHandler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace KTANE_helper;
+namespace KTANE_helper.Logic;
 
 public class BombKnowledge
 {

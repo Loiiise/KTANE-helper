@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KTANE-helper.Logic\KTANE-helper.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

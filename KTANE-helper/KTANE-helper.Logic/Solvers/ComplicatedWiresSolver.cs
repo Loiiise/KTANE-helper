@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KTANE_helper.Solvers;
+namespace KTANE_helper.Logic.Solvers;
 
 public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
 {

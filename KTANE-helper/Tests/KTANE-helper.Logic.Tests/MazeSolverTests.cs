@@ -1,4 +1,4 @@
-using KTANE_helper.Solvers;
+using KTANE_helper.Logic.Solvers;
 using Shouldly;
 
 namespace SolverTests;

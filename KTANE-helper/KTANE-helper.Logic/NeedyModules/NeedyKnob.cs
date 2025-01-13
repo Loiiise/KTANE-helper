@@ -1,6 +1,4 @@
-﻿using KTANE_helper.Solvers;
-
-namespace KTANE_helper.NeedyModules;
+﻿namespace KTANE_helper.Logic.Solvers;
 
 public class NeedyKnob : Solvable<NeedyKnob>
 {

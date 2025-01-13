@@ -1,4 +1,4 @@
-﻿namespace KTANE_helper.Solvers;
+﻿namespace KTANE_helper.Logic.Solvers;
 
 public class MemorySolver : Solvable<MemorySolver>
 {

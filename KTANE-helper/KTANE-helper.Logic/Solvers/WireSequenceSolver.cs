@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace KTANE_helper.Solvers;
+namespace KTANE_helper.Logic.Solvers;
 
 public class WireSequenceSolver : Solvable<WireSequenceSolver>
 {

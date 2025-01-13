@@ -1,11 +1,9 @@
-using KTANE_helper.IOHandler;
-using KTANE_helper.NeedyModules;
-using KTANE_helper.Solvers;
+using KTANE_helper.Logic.Solvers;
 using System.Collections.Generic;
 
-namespace KTANE_helper;
+namespace KTANE_helper.Logic;
 
-class Game
+public class Game
 {
     public Game(IIOHandler ioHandler)
     {

@@ -1,8 +1,7 @@
-﻿using KTANE_helper.Solvers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace KTANE_helper;
+namespace KTANE_helper.Logic.Solvers;
 
 public class SimonSaysSolver : Solvable<SimonSaysSolver>
 {
