@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.Solvers;
+﻿using System.Linq;
+
+namespace KTANE_helper.Solvers;
 
 public class WireSolver : Solvable<WireSolver>
 {
