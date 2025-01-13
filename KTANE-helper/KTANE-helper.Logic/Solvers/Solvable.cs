@@ -1,4 +1,6 @@
 ﻿#nullable disable
+using KTANE_helper.Logic.IO;
+
 namespace KTANE_helper.Logic.Solvers;
 
 public abstract class Solvable<Solver> where Solver : new()

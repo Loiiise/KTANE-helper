@@ -1,4 +1,4 @@
-﻿namespace KTANE_helper.Logic.Tests;
+﻿namespace KTANE_helper.Logic.IO.Tests;
 
 internal class MockIOHandler : IOHandler
 {
