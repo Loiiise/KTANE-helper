@@ -1,10 +1,11 @@
-﻿namespace KTANE_helper
+﻿using KTANE_helper.Logic;
+
+namespace KTANE_helper.CLI;
+
+internal class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            new Game();
-        }
+        new Game(new CLIHandler());
     }
 }
