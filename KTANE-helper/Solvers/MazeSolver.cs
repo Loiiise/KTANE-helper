@@ -4,9 +4,9 @@ using System.Text;
 
 namespace KTANE_helper.Solvers;
 
-internal class MazeSolver : Solvable<MazeSolver>
+public class MazeSolver : Solvable<MazeSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         // Find out which maze
         var maze = Maze.GetMaze(_ioHandler.CoordinateQuery("What are the coordinates of a circle (these are 1 based).", Maze.MinimalValue, Maze.MaximalValue));

@@ -2,9 +2,9 @@
 
 namespace KTANE_helper.NeedyModules;
 
-internal class NeedyKnob : Solvable<NeedyKnob>
+public class NeedyKnob : Solvable<NeedyKnob>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         _ioHandler.ShowLine(_ioHandler.Query("What are the first three lamps? (1 for on, 0 for off)") switch
         {

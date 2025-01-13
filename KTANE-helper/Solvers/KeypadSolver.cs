@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace KTANE_helper;
 
-internal class KeypadSolver : Solvable<KeypadSolver>
+public class KeypadSolver : Solvable<KeypadSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         var resultColumn = GetColumn();
         _ioHandler.ShowLine($"Solution found! Your result column is: {DisplaySymbols(resultColumn)}");

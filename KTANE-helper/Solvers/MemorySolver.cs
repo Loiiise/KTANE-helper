@@ -1,8 +1,8 @@
 ﻿namespace KTANE_helper.Solvers;
 
-internal class MemorySolver : Solvable<MemorySolver>
+public class MemorySolver : Solvable<MemorySolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         const int stages = 5;
         var labels = new int[stages];

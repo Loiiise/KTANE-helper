@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace KTANE_helper.Solvers;
 
-internal class MorseCodeSolver : Solvable<MorseCodeSolver>
+public class MorseCodeSolver : Solvable<MorseCodeSolver>
 {
     private List<string> wordOptions;
 
@@ -50,7 +50,7 @@ internal class MorseCodeSolver : Solvable<MorseCodeSolver>
     };
 
 
-    internal override void Solve(BombKnowledge _)
+    public override void Solve(BombKnowledge _)
     {
         wordOptions = words.Keys.ToList();
 

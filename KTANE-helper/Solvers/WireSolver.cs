@@ -1,10 +1,8 @@
-﻿using System.Linq;
-
-namespace KTANE_helper.Solvers;
+﻿namespace KTANE_helper.Solvers;
 
 public class WireSolver : Solvable<WireSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         string wires = _ioHandler.Query("What wires are present?");
 

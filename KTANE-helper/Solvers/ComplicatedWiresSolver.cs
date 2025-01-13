@@ -2,9 +2,9 @@
 
 namespace KTANE_helper.Solvers;
 
-internal class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
+public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         while (true)
         {

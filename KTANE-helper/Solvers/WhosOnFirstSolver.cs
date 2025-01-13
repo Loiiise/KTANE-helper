@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace KTANE_helper.Solvers;
 
-namespace KTANE_helper.Solvers;
-
-internal class WhosOnFirstSolver : Solvable<WhosOnFirstSolver>
+public class WhosOnFirstSolver : Solvable<WhosOnFirstSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         for (int i = 1; i <= 3; ++i)
         {

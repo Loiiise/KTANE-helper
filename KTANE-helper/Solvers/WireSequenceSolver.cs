@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace KTANE_helper.Solvers;
 
-internal class WireSequenceSolver : Solvable<WireSequenceSolver>
+public class WireSequenceSolver : Solvable<WireSequenceSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         int _redCounter = 0;
         int _blueCounter = 0;

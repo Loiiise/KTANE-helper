@@ -1,12 +1,10 @@
 ﻿using KTANE_helper.Solvers;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace KTANE_helper;
 
-internal class SimonSaysSolver : Solvable<SimonSaysSolver>
+public class SimonSaysSolver : Solvable<SimonSaysSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         bool noVowel = !bk.SerialNumberContainsVowel();
         int strikes = _ioHandler.IntQuery("How many strikes do you have?", new List<int> { 0, 1, 2 });

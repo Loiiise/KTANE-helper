@@ -1,8 +1,8 @@
 ﻿namespace KTANE_helper.Solvers;
 
-internal class ButtonSolver : Solvable<ButtonSolver>
+public class ButtonSolver : Solvable<ButtonSolver>
 {
-    internal override void Solve(BombKnowledge bk)
+    public override void Solve(BombKnowledge bk)
     {
         var data = _ioHandler.Query("What are the colour (dutch first letter) and the text of the button.").Split(' ');
         var colour = data[0].ToLower()[0];
