@@ -1,6 +1,4 @@
-﻿using KTANE_helper.Logic;
-
-namespace SolverTests;
+﻿namespace KTANE_helper.Logic.Tests;
 
 internal class MockIOHandler : IOHandler
 {
@@ -15,7 +13,7 @@ internal class MockIOHandler : IOHandler
     }
 
     public override void Show(string message) { }
-    public override void ShowLine(string message) => _outputQueue.Enqueue(message);   
+    public override void ShowLine(string message) => _outputQueue.Enqueue(message);
 
     public void EnqueueInputLine(string message) => _inputQueue.Enqueue(message);
     public string ReadOutputLine(int skip = 0)

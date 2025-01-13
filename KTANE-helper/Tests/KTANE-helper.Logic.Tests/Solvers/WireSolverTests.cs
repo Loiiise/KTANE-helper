@@ -1,8 +1,7 @@
-﻿using KTANE_helper.Logic;
-using KTANE_helper.Logic.Solvers;
-using Shouldly;
+﻿using Shouldly;
+using SolverTests;
 
-namespace SolverTests;
+namespace KTANE_helper.Logic.Solvers.Tests;
 public class WireSolverTests
 {
     /// <summary>

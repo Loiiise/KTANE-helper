@@ -1,7 +1,6 @@
-using KTANE_helper.Logic.Solvers;
 using Shouldly;
 
-namespace SolverTests;
+namespace KTANE_helper.Logic.Solvers.Tests;
 
 public class MazeSolverTests
 {
