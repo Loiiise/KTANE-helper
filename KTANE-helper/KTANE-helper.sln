@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTANE-helper", "KTANE-helper.csproj", "{D962DFFA-F5A8-464B-9342-D68B51E7E790}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTANE-helper.Logic", "KTANE-helper.Logic\KTANE-helper.Logic.csproj", "{D4C40FBA-27DA-4CB1-B63F-E2ED5171B1A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolverTests", "..\SolverTests\SolverTests.csproj", "{D23DAE56-4F09-419B-882D-9A390D6B2CD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTANE-helper.Logic.Tests", "Tests\KTANE-helper.Logic.Tests\KTANE-helper.Logic.Tests.csproj", "{E12242AF-306E-48E6-B5BC-703443496E8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTANE-helper.CLI", "KTANE-helper.CLI\KTANE-helper.CLI.csproj", "{EF2EE205-0CC2-4DE8-A334-7F44331F838A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D962DFFA-F5A8-464B-9342-D68B51E7E790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D962DFFA-F5A8-464B-9342-D68B51E7E790}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D962DFFA-F5A8-464B-9342-D68B51E7E790}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D962DFFA-F5A8-464B-9342-D68B51E7E790}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D23DAE56-4F09-419B-882D-9A390D6B2CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D23DAE56-4F09-419B-882D-9A390D6B2CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D23DAE56-4F09-419B-882D-9A390D6B2CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D23DAE56-4F09-419B-882D-9A390D6B2CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C40FBA-27DA-4CB1-B63F-E2ED5171B1A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C40FBA-27DA-4CB1-B63F-E2ED5171B1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C40FBA-27DA-4CB1-B63F-E2ED5171B1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C40FBA-27DA-4CB1-B63F-E2ED5171B1A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12242AF-306E-48E6-B5BC-703443496E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12242AF-306E-48E6-B5BC-703443496E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12242AF-306E-48E6-B5BC-703443496E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12242AF-306E-48E6-B5BC-703443496E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2EE205-0CC2-4DE8-A334-7F44331F838A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2EE205-0CC2-4DE8-A334-7F44331F838A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2EE205-0CC2-4DE8-A334-7F44331F838A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2EE205-0CC2-4DE8-A334-7F44331F838A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

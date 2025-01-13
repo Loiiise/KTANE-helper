@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KTANE_helper.IOHandler;
+namespace KTANE_helper.Logic;
 
 public interface IIOHandler
 {
