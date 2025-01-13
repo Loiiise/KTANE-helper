@@ -1,4 +1,4 @@
-﻿using KTANE_helper.IOHandler;
+﻿using KTANE_helper.Logic;
 
 namespace SolverTests;
 

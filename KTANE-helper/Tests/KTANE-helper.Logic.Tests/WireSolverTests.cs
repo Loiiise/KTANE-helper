@@ -1,4 +1,4 @@
-﻿using KTANE_helper;
+﻿using KTANE_helper.Logic;
 using KTANE_helper.Logic.Solvers;
 using Shouldly;
 
