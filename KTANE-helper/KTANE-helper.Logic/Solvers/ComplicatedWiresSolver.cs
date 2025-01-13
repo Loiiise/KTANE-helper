@@ -26,7 +26,7 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
 
             var instruction = GetInstructionFromState(state);
 
-            _ioHandler.ShowLine(ShouldICut(instruction, bk) ? _cutMessage : _dontCutMessage);
+            _ioHandler.Answer(new ComplicatedWiresAnswer { Value = ShouldICut(instruction, bk) });
         }
     }
 
@@ -69,9 +69,6 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
         Instruction.BatteryRelated => bk.Batteries() >= 2,
         _ => throw new ArgumentOutOfRangeException(nameof(instruction)),
     };
-
-    private const string _cutMessage = "CUT THE WIRE!";
-    private const string _dontCutMessage = "Don't cut.";
 }
 
 [Flags]

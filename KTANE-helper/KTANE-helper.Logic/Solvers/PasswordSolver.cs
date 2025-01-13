@@ -49,6 +49,7 @@ public class PasswordSolver : Solvable<PasswordSolver>
             _ioHandler.ShowLine("You messed up!");
             return;
         }
-        _ioHandler.ShowLine($"Password is {passwordOptions.First()}");
+
+        _ioHandler.Answer(new PasswordAnswer { Value = passwordOptions.First() });
     }
 }

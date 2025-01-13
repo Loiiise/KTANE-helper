@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KTANE_helper.Logic.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -94,7 +95,7 @@ public class WhosOnFirstSolver : Solvable<WhosOnFirstSolver>
 
         _ioHandler.ShowLine("The first appearing word in the following list is the button that should be pressed.");
 
-        foreach (var result in wordMap[inputWord]) _ioHandler.ShowLine(GetWordString(result));
+        _ioHandler.Answer(new WhosOnFirstAnswer { Value = wordMap[inputWord].Select(GetWordString).ToArray() });
     }
 
     private static string GetWordString(Word word) => word switch
