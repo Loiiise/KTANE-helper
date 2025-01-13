@@ -20,7 +20,7 @@ namespace KTANE_helper
             var keyString = Query("What symbol do you see?", stringKeys);
             var candidates = symbolToColumn[GetSymbolFromString(keyString)];
 
-            if (candidates.Count() == 1) return columnToSymbol[candidates.First()];
+            if (candidates.Count == 1) return columnToSymbol[candidates.First()];
 
             int a = candidates.First();
             int b = candidates.Last();
@@ -43,7 +43,7 @@ namespace KTANE_helper
 
         private enum Symbol { O, A, Lambda, N, Spin, H, CMirrored, E, Krul, Ster, Questionmark, Copyright, W, KK, R, Zes, P, B, Smiley, Psi, C, Slang, SterGevuld, Equals, Ae, GroteN, Omega };
 
-        private static IEnumerable<Symbol> allSymbols = Enum.GetValues(typeof(Symbol)).Cast<Symbol>();
+        private static IEnumerable<Symbol> allSymbols = Enum.GetValues<Symbol>().Cast<Symbol>();
 
         private static string GetSymbolString(Symbol symbol) => symbol switch
         {
@@ -74,6 +74,7 @@ namespace KTANE_helper
             Symbol.Ae => "ae",
             Symbol.GroteN => "grote n",
             Symbol.Omega => "omega",
+            _ => throw new ArgumentOutOfRangeException(),
         };
         private static Symbol GetSymbolFromString(string stringSymbol) => allSymbols.First(k => GetSymbolString(k) == stringSymbol);
 

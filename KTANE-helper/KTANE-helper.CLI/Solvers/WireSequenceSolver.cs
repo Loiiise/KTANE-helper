@@ -38,7 +38,7 @@ namespace KTANE_helper.Solvers
                         case WireSequenceColour.Black:
                             cutIfIsThisOne = _blackMap[_blackCounter++];
                             break;
-                        default: throw new ArgumentException();
+                        default: throw new ArgumentOutOfRangeException();
                     }
 
                     if (cutIfIsThisOne.HasFlag(wire.Type))
@@ -65,7 +65,7 @@ namespace KTANE_helper.Solvers
                     'R' => WireSequenceColour.Red,
                     'B' => WireSequenceColour.Blue,
                     'Z' => WireSequenceColour.Black,
-                    _ => throw new ArgumentException($"Illegal wire colour \"{wire[0]}\""),
+                    _ => throw new ArgumentOutOfRangeException($"Illegal wire colour \"{wire[0]}\""),
                 };
 
                 var type = wire[1] switch
@@ -73,7 +73,7 @@ namespace KTANE_helper.Solvers
                     'A' => WireSequenceType.A,
                     'B' => WireSequenceType.B,
                     'C' => WireSequenceType.C,
-                    _ => throw new ArgumentException($"Illegal wire type \"{wire[1]}\""),
+                    _ => throw new ArgumentOutOfRangeException($"Illegal wire type \"{wire[1]}\""),
                 };
 
                 yield return new(colour, type);

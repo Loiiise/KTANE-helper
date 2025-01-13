@@ -40,8 +40,8 @@ namespace KTANE_helper.Solvers
 
         private Instruction GetInstructionFromState(WireProperties state) => _instructionMap[(int)state];
 
-        private readonly Instruction[] _instructionMap = new Instruction[]
-        {
+        private readonly Instruction[] _instructionMap =
+        [
             Instruction.Cut,                 // ....
             Instruction.SerialRelated,       // ...R
             Instruction.SerialRelated,       // ..B.
@@ -58,15 +58,17 @@ namespace KTANE_helper.Solvers
             Instruction.BatteryRelated,      // LS.R
             Instruction.ParallelPortRelated, // LSB.
             Instruction.DoNotCut,            // LSBR
-        };
+        ];
 
-        private bool ShouldICut(Instruction instruction, BombKnowledge bk) => instruction switch
+        private static bool ShouldICut(Instruction instruction, BombKnowledge bk) 
+            => instruction switch
         {
             Instruction.Cut => true,
             Instruction.DoNotCut => false,
             Instruction.SerialRelated => bk.SerialNumberLastDigitEven(),
             Instruction.ParallelPortRelated => bk.HasParallelPort(),
             Instruction.BatteryRelated => bk.Batteries() >= 2,
+            _ => throw new ArgumentOutOfRangeException(),
         };
 
         private const string _cutMessage = "CUT THE WIRE!";

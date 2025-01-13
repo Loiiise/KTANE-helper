@@ -24,6 +24,7 @@ namespace KTANE_helper.Solvers
                             2 => 2,
                             3 => 3,
                             4 => 4,
+                            _ => throw new ArgumentOutOfRangeException(),
                         };
 
                         labels[stage] = Position(position);
@@ -93,6 +94,7 @@ namespace KTANE_helper.Solvers
                             2 => LabelStage(2, ask: false),
                             3 => LabelStage(4, ask: false),
                             4 => LabelStage(3, ask: false),
+                            _ => throw new ArgumentOutOfRangeException(),
                         };
 
                         Show("Hurrah! Thou hast donest itst!");
