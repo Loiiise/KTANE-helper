@@ -9,6 +9,8 @@ public interface IIOHandler
     public void PromptScopeUp(string sc);
     public void PromptScopeDown();
 
+    public void Answer<T>(Answer<T> answer);
+
     public void Show(string message);
     public void ShowLine(string message);
     public string ReadLine();

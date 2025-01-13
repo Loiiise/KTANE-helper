@@ -1,4 +1,5 @@
-﻿using KTANE_helper.Logic.IO.Tests;
+﻿using KTANE_helper.Logic.IO;
+using KTANE_helper.Logic.IO.Tests;
 using Shouldly;
 
 namespace KTANE_helper.Logic.Solvers.Tests;
@@ -26,6 +27,8 @@ public class WireSolverTests
         solver.Solve(bombKnowledge);
 
         // Assert correct output
-        ioHandlerMock.ReadOutputLine(1).ShouldBe("Cut the second wire");
+        var answer = ioHandlerMock.GetAnswer() as WireAnswer;
+        answer.ShouldBeOfType<WireAnswer>();
+        answer.Value.ShouldBe(2);
     }
 }

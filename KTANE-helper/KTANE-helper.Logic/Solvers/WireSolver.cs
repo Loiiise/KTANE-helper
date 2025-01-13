@@ -52,10 +52,8 @@ public class WireSolver : Solvable<WireSolver>
                 return;
         }
 
-        void Cut(int wire)
-        {
-            _ioHandler.ShowLine($"Cut the {wire.PositionWord()} wire");
-        }
+        void Cut(int wire) => _ioHandler.Answer(new WireAnswer() { Value = wire });
+        
         void CutLast(char colour) => Cut(LastIndex(colour));
 
         int LastIndex(char colour)

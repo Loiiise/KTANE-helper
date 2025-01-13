@@ -19,6 +19,8 @@ public abstract class IOHandler : IIOHandler
         if (scopeStack.Count > 0) scopeStack.Pop();
     }
 
+    public abstract void Answer<T>(Answer<T> answer);
+
     public abstract void Show(string message);
     public abstract void ShowLine(string message);
     public abstract string ReadLine();
