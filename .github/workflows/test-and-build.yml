@@ -39,6 +39,10 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
+    # Install dependencies
+    - name: Install dependencies
+      run: dotnet restore KTANE-helper
+
     # Build the project (treat any warnings as errors)
     - name: Build the project
       run: dotnet build KTANE-helper /warnaserror
