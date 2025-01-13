@@ -72,6 +72,7 @@ public class KeypadSolver : Solvable<KeypadSolver>
         Symbol.Ae => "ae",
         Symbol.GroteN => "grote n",
         Symbol.Omega => "omega",
+        _ => throw new ArgumentOutOfRangeException(nameof(Symbol)),
     };
     private static Symbol GetSymbolFromString(string stringSymbol) => allSymbols.First(k => GetSymbolString(k) == stringSymbol);
 

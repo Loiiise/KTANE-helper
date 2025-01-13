@@ -5,9 +5,9 @@ namespace KTANE_helper.Logic.Solvers;
 
 public class MorseCodeSolver : Solvable<MorseCodeSolver>
 {
-    private List<string> wordOptions;
+    private List<string> wordOptions = words.Keys.ToList();
 
-    private readonly Dictionary<string, string> morseCode = new()
+    private static readonly Dictionary<string, string> morseCode = new()
     {
         { ".-"  , "a" },
         { "-...", "b" },
@@ -29,7 +29,7 @@ public class MorseCodeSolver : Solvable<MorseCodeSolver>
         { "-..-", "x" },
     };
 
-    private readonly Dictionary<string, double> words = new()
+    private static readonly Dictionary<string, double> words = new()
     {
         { "beats", 3.600 },
         { "bistro", 3.552 },
@@ -52,8 +52,6 @@ public class MorseCodeSolver : Solvable<MorseCodeSolver>
 
     public override void Solve(BombKnowledge _)
     {
-        wordOptions = words.Keys.ToList();
-
         _ioHandler.ShowLine("Use . for shorts and - or , for longs.");
         string answer;
         while (!ProcessLetter(_ioHandler.Query("What is a letter you see?"), out answer)) ;
@@ -68,7 +66,7 @@ public class MorseCodeSolver : Solvable<MorseCodeSolver>
 
     private bool ProcessLetter(string letter, out string word)
     {
-        word = null;
+        word = string.Empty;
 
         letter = letter.Replace(',', '-');
         if (!morseCode.Keys.Contains(letter)) return false;

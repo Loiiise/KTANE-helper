@@ -1,5 +1,5 @@
-﻿using Shouldly;
-using SolverTests;
+﻿using KTANE_helper.Logic.Tests;
+using Shouldly;
 
 namespace KTANE_helper.Logic.Solvers.Tests;
 public class WireSolverTests

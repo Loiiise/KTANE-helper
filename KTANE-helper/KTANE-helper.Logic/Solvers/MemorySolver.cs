@@ -21,6 +21,7 @@ public class MemorySolver : Solvable<MemorySolver>
                         2 => 2,
                         3 => 3,
                         4 => 4,
+                        _ => throw new ArgumentOutOfRangeException(nameof(display)),
                     };
 
                     labels[stage] = Position(position);
@@ -90,6 +91,7 @@ public class MemorySolver : Solvable<MemorySolver>
                         2 => LabelStage(2, ask: false),
                         3 => LabelStage(4, ask: false),
                         4 => LabelStage(3, ask: false),
+                        _ => throw new ArgumentOutOfRangeException(nameof(display)),
                     };
 
                     _ioHandler.ShowLine("Hurrah! Thou hast donest itst!");

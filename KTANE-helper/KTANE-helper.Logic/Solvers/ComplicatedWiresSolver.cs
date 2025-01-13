@@ -66,6 +66,7 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
         Instruction.SerialRelated => bk.SerialNumberLastDigitEven(),
         Instruction.ParallelPortRelated => bk.HasParallelPort(),
         Instruction.BatteryRelated => bk.Batteries() >= 2,
+        _ => throw new ArgumentOutOfRangeException(nameof(instruction)),
     };
 
     private const string _cutMessage = "CUT THE WIRE!";
