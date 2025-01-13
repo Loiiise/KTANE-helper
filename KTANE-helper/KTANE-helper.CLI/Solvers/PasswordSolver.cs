@@ -13,9 +13,8 @@ namespace KTANE_helper
             var passwordOptions = new List<string> { "about", "after", "again", "below", "could", "every", "first", "found", "great", "house", "large", "learn", "never", "other", "place", "plant", "point", "right", "small", "sound", "spell", "still", "study", "their", "there", "these", "thing", "think", "three", "water", "where", "which", "world", "would", "write" };
 
             int currentLetter = 0;
-            bool found = false;
 
-            while (passwordOptions.Count() > 1)
+            while (passwordOptions.Count > 1)
             {
                 var nextLetterOptions = new HashSet<string>(
                     passwordOptions.Select(pw => pw[currentLetter].ToString())
@@ -47,7 +46,7 @@ namespace KTANE_helper
 
                 ++currentLetter;
             }
-            if (passwordOptions.Count() == 0)
+            if (passwordOptions.Count == 0)
             {
                 Show("You messed up!");
                 return;

@@ -52,6 +52,7 @@ namespace KTANE_helper.Solvers
                 Word.THERE or
                 Word.SEE or
                 Word.CEE => "bottom right",
+                _ => throw new ArgumentException(),
             };
 
             var label = Query($"What is the label of the {buttonPosition} button", allWordsStrings);
