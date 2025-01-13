@@ -48,7 +48,7 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
                     .Where(x => x.First)                 // Filter only those tuples where the boolean is true
                     .Select(x => x.Second);              // Throw away the boolean and keep just the index
 
-                // ShowLine generic semi-summarized output
+                // Show generic semi-summarized output
                 _ioHandler.ShowLine($"Cut {"wire".Pluralise(wireIndices)} {wireIndices.ShowSequence()}");
             }
         }
