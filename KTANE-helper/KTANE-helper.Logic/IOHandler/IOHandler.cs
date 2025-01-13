@@ -117,29 +117,4 @@ public abstract class IOHandler : IIOHandler
             yield return ReadLine();
         }
     }
-
-    public string PositionWord(int p) => p switch
-    {
-        0 => "zeroeth",
-        1 => "first",
-        2 => "second",
-        3 => "third",
-        4 => "fourth",
-        5 => "fifth",
-        6 => "sixth",
-        _ => $"{p}th"
-    };
-
-    public bool HasIllegalCharacters(string input, params char[] legalCharacters)
-    {
-        foreach (char c in input)
-        {
-            if (!legalCharacters.Contains(c))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KTANE_helper.Logic.IO;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KTANE_helper.Logic.Solvers;
@@ -21,7 +22,7 @@ public class PasswordSolver : Solvable<PasswordSolver>
 
             if (nextLetterOptions.Count() > 1)
             {
-                var msg = $"{passwordOptions.Count()} options left! What are the options for the {_ioHandler.PositionWord(currentLetter + 1)} letter?";
+                var msg = $"{passwordOptions.Count()} options left! What are the options for the {(currentLetter + 1).PositionWord()} letter?";
 
                 foreach (var letter in _ioHandler.QueryMultiple(msg, n: 6))
                 {
@@ -35,7 +36,7 @@ public class PasswordSolver : Solvable<PasswordSolver>
             }
             else
             {
-                _ioHandler.ShowLine($"Skipping the {_ioHandler.PositionWord(currentLetter + 1)} letter!");
+                _ioHandler.ShowLine($"Skipping the {(currentLetter + 1).PositionWord()} letter!");
                 currentLetterOptionsFound.Add(nextLetterOptions.First());
             }
 

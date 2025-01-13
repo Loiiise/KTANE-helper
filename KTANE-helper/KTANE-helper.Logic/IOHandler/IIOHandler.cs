@@ -26,8 +26,4 @@ public interface IIOHandler
     public bool Ask(string question);
 
     public IEnumerable<string> GetLines(int lines);
-
-    public string PositionWord(int p);
-
-    public bool HasIllegalCharacters(string input, params char[] legalCharacters);
 }

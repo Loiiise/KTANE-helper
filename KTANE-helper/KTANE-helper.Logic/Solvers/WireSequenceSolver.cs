@@ -1,3 +1,4 @@
+using KTANE_helper.Logic.IO;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
             var wireCounter = 0;
 
             if (userInput.Length > 6 ||
-                _ioHandler.HasIllegalCharacters(userInput, 'R', 'B', 'Z', 'A', 'C'))
+                userInput.HasIllegalCharacters('R', 'B', 'Z', 'A', 'C'))
             {
                 break;
             }
@@ -42,11 +43,11 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
 
                 if (cutIfIsThisOne.HasFlag(wire.Type))
                 {
-                    _ioHandler.ShowLine($"Cut the {_ioHandler.PositionWord(++wireCounter)} wire.");
+                    _ioHandler.ShowLine($"Cut the {(++wireCounter).PositionWord()} wire.");
                 }
                 else
                 {
-                    _ioHandler.ShowLine($"DON'T cut the {_ioHandler.PositionWord(++wireCounter)} wire.");
+                    _ioHandler.ShowLine($"DON'T cut the {(++wireCounter).PositionWord()} wire.");
                 }
             }
         }
