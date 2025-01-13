@@ -18,7 +18,14 @@ internal class MockIOHandler : IOHandler
     public override void ShowLine(string message) => _outputQueue.Enqueue(message);   
 
     public void EnqueueInputLine(string message) => _inputQueue.Enqueue(message);
-    public string ReadOutputLine() => _outputQueue.Dequeue();
+    public string ReadOutputLine(int skip = 0)
+    {
+        for (int i = 0; i < skip; ++i)
+        {
+            _outputQueue.Dequeue();
+        }
+        return _outputQueue.Dequeue();
+    }
 
     private Queue<string> _inputQueue = new();
     private Queue<string> _outputQueue = new();
