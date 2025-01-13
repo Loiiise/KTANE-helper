@@ -116,7 +116,7 @@ namespace KTANE_helper.Solvers
                 (2, 1) or (2, 6) => 6,
                 (3, 4) or (4, 1) => 7,
                 (1, 5) or (3, 2) => 8,
-                _ => throw new ArgumentException(),
+                _ => throw new ArgumentOutOfRangeException(),
             }];
 
         public static readonly Maze[] AllMazes = new Maze[9]

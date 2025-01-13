@@ -74,7 +74,7 @@ namespace KTANE_helper
             Symbol.Ae => "ae",
             Symbol.GroteN => "grote n",
             Symbol.Omega => "omega",
-            _ => throw new ArgumentException(),
+            _ => throw new ArgumentOutOfRangeException(),
         };
         private static Symbol GetSymbolFromString(string stringSymbol) => allSymbols.First(k => GetSymbolString(k) == stringSymbol);
 

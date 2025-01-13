@@ -52,7 +52,7 @@ namespace KTANE_helper.Solvers
                 Word.THERE or
                 Word.SEE or
                 Word.CEE => "bottom right",
-                _ => throw new ArgumentException(),
+                _ => throw new ArgumentException("This word is not supported in this context in the manual"),
             };
 
             var label = Query($"What is the label of the {buttonPosition} button", allWordsStrings);

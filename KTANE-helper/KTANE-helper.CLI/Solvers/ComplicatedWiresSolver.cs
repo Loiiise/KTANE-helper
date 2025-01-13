@@ -68,7 +68,7 @@ namespace KTANE_helper.Solvers
             Instruction.SerialRelated => bk.SerialNumberLastDigitEven(),
             Instruction.ParallelPortRelated => bk.HasParallelPort(),
             Instruction.BatteryRelated => bk.Batteries() >= 2,
-            _ => throw new ArgumentException(),
+            _ => throw new ArgumentOutOfRangeException(),
         };
 
         private const string _cutMessage = "CUT THE WIRE!";
