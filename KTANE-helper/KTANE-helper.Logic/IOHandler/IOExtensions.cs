@@ -5,18 +5,17 @@ public static class IOExtensions
     /// <summary>
     /// Pluralise expects a word that is assumed to be non-pluralised, and either a collection or a count.
     /// It then returns that word in either its plural or non-plural form depending on the size of the collection
-    /// (or count)
+    /// (or count).
     /// </summary>
-    /// <typeparam name="T">The type of things in the collection. Not used in the body logic.</typeparam>
     /// <param name="word">Non-plural word to be pluralised.</param>
     /// <param name="collection">The collection depending on which to pluralise.</param>
     /// <returns>A correctly pluralised word.</returns>
-    internal static string Pluralise<T>(this string word, IEnumerable<T> collection)
-            => word.Pluralise(collection.Count());
+    public static string Pluralise<T>(this string word, IEnumerable<T> collection)
+        => word.Pluralise(collection.Count());
 
-    internal static string Pluralise(this string word, int count)
+    public static string Pluralise(this string word, int count)
     {
-        if (Math.Abs(count) == 1) return word;
+        if (count == 1 || count == -1) return word;
 
         return word + "s";
     }
