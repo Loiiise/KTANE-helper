@@ -22,25 +22,34 @@ public static class IOExtensions
     }
 
     /// <summary>
-    /// Formats a collection of Ts into a sequence of the format "a, b, c, and d" etc.
+    /// Formats a collection of Ts such as [a, b, c, d] into a sequence of the format "a, b, c and d".
     /// </summary>
     /// <typeparam name="T">The type of the items to sequencify.</typeparam>
     /// <param name="collection">The items to sequencify.</param>
     internal static string ShowSequence<T>(this IEnumerable<T> collection)
     {
         // Return if the collection is empty
-        if (collection is null || !collection.Any()) return "";
+        if (collection is null || !collection.Any()) return string.Empty;
 
-        // Take all elements except the last item
-        var notLastPart = collection.Take(collection.Count() - 1);
-        string last;
-        if (collection.Last() is var lastT && lastT is not null)
-            last = lastT.ToString() ?? "null";
-        else last = "null";
+        // Map all elements in the selection to a string
+        var strings = collection.Select(StringValueOrDefault);
+
+        // Separate the last item from the preceding items
+        var preceding = strings.Take(collection.Count() - 1);
+        var last = strings.Last();
 
         // If there are no preceding items, return just the last item
-        if (!notLastPart.Any()) return last.ToString();
+        if (!preceding.Any()) return last;
         // Else, return the first few separated by a comma, followed by "and {last}"
-        else return string.Join(" and ", new List<string> { string.Join(", ", notLastPart), last });
+        else return $"{string.Join(", ", preceding)} and {last}";
+
+
+        // Maps a T to a string representation or a default value if it is null
+        static string StringValueOrDefault(T item)
+        {
+            if (item is null || item.ToString() is not string str) return "???";
+
+            return str;
+        }
     }
 }
