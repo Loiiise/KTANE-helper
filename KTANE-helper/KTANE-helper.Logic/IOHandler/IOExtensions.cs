@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace KTANE_helper.Logic;
+﻿namespace KTANE_helper.Logic;
 
 public static class IOExtensions
 {
@@ -18,10 +16,8 @@ public static class IOExtensions
 
     internal static string Pluralise(this string word, int count)
     {
-        // -1 and 1 item both should not pluralise their word
         if (Math.Abs(count) == 1) return word;
 
-        // 2, 3, 4, etc. items
         return word + "s";
     }
 
