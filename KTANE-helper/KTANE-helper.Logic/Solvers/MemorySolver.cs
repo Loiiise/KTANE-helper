@@ -122,3 +122,5 @@ public class MemorySolver : Solvable<MemorySolver>
 
     }
 }
+
+public enum MemoryPositionOrLabel { Position, Label }

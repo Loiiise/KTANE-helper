@@ -254,3 +254,4 @@ public class Maze
     public const int Height = MaximalValue;
     public const int Size = Width * Height;
 }
+public enum MazeDirection { Left, Right, Up, Down }
