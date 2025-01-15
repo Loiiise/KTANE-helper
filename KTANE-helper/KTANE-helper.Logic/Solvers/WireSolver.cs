@@ -1,5 +1,4 @@
 ﻿using KTANE_helper.Logic.IO;
-using System.Linq;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -53,7 +52,7 @@ public class WireSolver : Solvable<WireSolver>
         }
 
         void Cut(int wire) => _ioHandler.Answer(new WireAnswer() { Value = wire });
-        
+
         void CutLast(char colour) => Cut(LastIndex(colour));
 
         int LastIndex(char colour)

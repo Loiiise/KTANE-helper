@@ -1,5 +1,4 @@
 ﻿using KTANE_helper.Logic.IO;
-using System.Runtime.CompilerServices;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -19,7 +18,7 @@ public class ButtonSolver : Solvable<ButtonSolver>
         else if (colour == 'r' && text == "hold") PressAndRelease();
         else HoldAndRelease();
 
-        void PressAndRelease() => _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.ReleaseImmediately, null)});
+        void PressAndRelease() => _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.ReleaseImmediately, null) });
 
         void HoldAndRelease()
         {
@@ -30,7 +29,7 @@ public class ButtonSolver : Solvable<ButtonSolver>
             else ReleaseWhen(1);
 
             void ReleaseWhen(int i) => _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.ReleaseWhen, i) });
-        }        
+        }
     }
 }
 
