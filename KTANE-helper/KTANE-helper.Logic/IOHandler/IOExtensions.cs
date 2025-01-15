@@ -2,6 +2,9 @@ namespace KTANE_helper.Logic.IO;
 
 public static class IOExtensions
 {
+    /// <summary>
+    /// Stringifies the number in a pleasing textual manner.
+    /// </summary>
     public static string PositionWord(this int p) => p switch
     {
         0 => "zeroeth",

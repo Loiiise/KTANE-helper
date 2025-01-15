@@ -5,6 +5,29 @@ namespace KTANE_helper.Logic.Tests;
 
 public class IOExtensionsTests
 {
+    [Theory]
+    [InlineData(0, "zeroeth")]
+    [InlineData(1, "first")]
+    [InlineData(2, "second")]
+    [InlineData(3, "third")]
+    [InlineData(4, "fourth")]
+    [InlineData(5, "fifth")]
+    [InlineData(6, "sixth")]
+    public void PositionWordReturnsHardcodedStringForZeroToSix(int number, string expected)
+    {
+        number.PositionWord().ShouldBe(expected);
+    }
+
+    [Theory]
+    [InlineData(10, "10th")]
+    [InlineData(69, "69th")]
+    [InlineData(420, "420th")]
+    [InlineData(-1, "-1th")]
+    public void PositionWordReturnsNumberAndTHForAllOtherNumbers(int number, string expected)
+    {
+        number.PositionWord().ShouldBe(expected);
+    }
+
     public static IEnumerable<string> GetTestStrings
         => ["", "not empty"];
 
@@ -63,11 +86,11 @@ public class IOExtensionsTests
     [Fact]
     public void ShowSequenceHandlesComplexTypesGracefully()
     {
-        var collection = new List<List<int>> 
-        { 
-            new() { 1, 2 }, 
-            new() { 3 }, 
-            new() { 4, 5, 6 } 
+        var collection = new List<List<int>>
+        {
+            new() { 1, 2 },
+            new() { 3 },
+            new() { 4, 5, 6 }
         };
 
         collection.ShowSequence().ShouldBe("System.Collections.Generic.List`1[System.Int32], System.Collections.Generic.List`1[System.Int32] and System.Collections.Generic.List`1[System.Int32]");
