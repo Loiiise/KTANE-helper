@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace KTANE_helper.Logic.IO;
+﻿namespace KTANE_helper.Logic.IO;
 
 public interface IIOHandler
 {

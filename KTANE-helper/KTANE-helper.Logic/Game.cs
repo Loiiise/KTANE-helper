@@ -1,6 +1,5 @@
 using KTANE_helper.Logic.IO;
 using KTANE_helper.Logic.Solvers;
-using System.Collections.Generic;
 
 namespace KTANE_helper.Logic;
 

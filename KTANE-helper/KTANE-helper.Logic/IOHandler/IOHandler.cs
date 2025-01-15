@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace KTANE_helper.Logic.IO;
+﻿namespace KTANE_helper.Logic.IO;
 
 public abstract class IOHandler : IIOHandler
 {
