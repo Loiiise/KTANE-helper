@@ -57,4 +57,12 @@ public class IOExtensionsTests
     {
         collection.ShowSequence().ShouldBe(expectedResult);
     }
+
+    [Fact]
+    public void ShowSequenceHandlesNullValuesGracefully()
+    {
+        var collection = new List<int?> { 1, 2, null, 4, 5 };
+
+        collection.ShowSequence().ShouldBe("1, 2, ???, 4 and 5");
+    }
 }
