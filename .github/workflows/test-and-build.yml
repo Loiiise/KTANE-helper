@@ -50,3 +50,7 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test KTANE-helper
+
+    # Check if code is in accordance with HBM codestyle
+    - name: Format
+      run: dotnet format --verify-no-changes --verbosity diagnostic
