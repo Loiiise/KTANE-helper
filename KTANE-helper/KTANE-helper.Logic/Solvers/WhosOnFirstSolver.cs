@@ -68,7 +68,7 @@ public class WhosOnFirstSolver : Solvable<WhosOnFirstSolver>
             { Word.YES, new() { Word.OKAY, Word.RIGHT, Word.UHHH, Word.MIDDLE, Word.FIRST, Word.WHAT, Word.PRESS, Word.READY, Word.NOTHING, Word.YES } },
             { Word.WHAT, new() { Word.UHHH, Word.WHAT } },
             { Word.UHHH, new() { Word.READY, Word.NOTHING, Word.LEFT, Word.WHAT, Word.OKAY, Word.YES, Word.RIGHT, Word.NO, Word.PRESS, Word.BLANK, Word.UHHH } },
-            { Word.LEFT, new() { Word.RIGHT, Word.LEFT, Word.FIRST, Word.NO, Word.MIDDLE, Word.YES, Word.BLANK, Word.WHAT, Word.UHHH, Word.WAIT, Word.PRESS, Word.READY, Word.OKAY, Word.NOTHING } },
+            { Word.LEFT, new() { Word.RIGHT, Word.LEFT } },
             { Word.RIGHT, new() { Word.YES, Word.NOTHING, Word.READY, Word.PRESS, Word.NO, Word.WAIT, Word.WHAT, Word.RIGHT } },
             { Word.MIDDLE, new() { Word.BLANK, Word.READY, Word.OKAY, Word.WHAT, Word.NOTHING, Word.PRESS, Word.NO, Word.WAIT, Word.LEFT, Word.MIDDLE } },
             { Word.OKAY, new() { Word.MIDDLE, Word.NO, Word.FIRST, Word.YES, Word.UHHH, Word.NOTHING, Word.WAIT, Word.OKAY } },
