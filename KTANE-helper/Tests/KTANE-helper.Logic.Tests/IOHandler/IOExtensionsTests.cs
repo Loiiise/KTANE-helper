@@ -41,18 +41,18 @@ public class IOExtensionsTests
 
     [Theory, CombinatorialData]
     public void StringsWithOnlyLegalCharactersAreAllowed(
-        [CombinatorialValues("a", "aaaaaaaaaaaaaa", "aaa")] string abcString,
+        [CombinatorialValues("a", "aaaaaaaaaaaaaa", "aaa")] string stringOfAs,
         [CombinatorialMemberData(nameof(CharacterSetsABCs))] params char[] abcCharacters)
     {
-        abcString.HasIllegalCharacters(abcCharacters).ShouldBeFalse();
+        stringOfAs.HasIllegalCharacters(abcCharacters).ShouldBeFalse();
     }
 
     [Theory, CombinatorialData]
     public void StringsWithAnyIllegalCharacterAreNotAllowed(
-        [CombinatorialValues("abcd", "a basic string", "because", "bbbaaaaaaappaa")] string abcString,
+        [CombinatorialValues("abcd", "a basic string", "because", "bbbaaaaaaappaa")] string illegalStrings,
         [CombinatorialMemberData(nameof(CharacterSetsABCs))] params char[] abcCharacters)
     {
-        abcString.HasIllegalCharacters(abcCharacters).ShouldBeTrue();
+        illegalStrings.HasIllegalCharacters(abcCharacters).ShouldBeTrue();
     }
 
     public static IEnumerable<string> GetTestStrings
