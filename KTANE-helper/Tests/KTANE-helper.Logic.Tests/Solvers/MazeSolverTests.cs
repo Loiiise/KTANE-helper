@@ -18,6 +18,6 @@ public class MazeSolverTests
 
     public static IEnumerable<object[]> GetAllMazes()
     {
-        return Maze.AllMazes.Select(m => new object[] { m }  );
+        return Maze.AllMazes.Select(m => new object[] { m });
     }
 }
