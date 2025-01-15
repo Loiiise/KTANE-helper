@@ -63,11 +63,11 @@ public class IOExtensionsTests
     [Fact]
     public void ShowSequenceHandlesComplexTypesGracefully()
     {
-        var collection = new List<List<int>> 
-        { 
-            new() { 1, 2 }, 
-            new() { 3 }, 
-            new() { 4, 5, 6 } 
+        var collection = new List<List<int>>
+        {
+            new() { 1, 2 },
+            new() { 3 },
+            new() { 4, 5, 6 }
         };
 
         collection.ShowSequence().ShouldBe("System.Collections.Generic.List`1[System.Int32], System.Collections.Generic.List`1[System.Int32] and System.Collections.Generic.List`1[System.Int32]");
