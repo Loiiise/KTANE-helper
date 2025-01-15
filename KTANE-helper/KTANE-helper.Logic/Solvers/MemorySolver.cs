@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.Logic.Solvers;
+﻿using KTANE_helper.Logic.IO;
+
+namespace KTANE_helper.Logic.Solvers;
 
 public class MemorySolver : Solvable<MemorySolver>
 {
@@ -101,14 +103,14 @@ public class MemorySolver : Solvable<MemorySolver>
 
         int Position(int position, bool ask = true)
         {
-            _ioHandler.ShowLine($"Press the button in the {_ioHandler.PositionWord(position)} position");
+            _ioHandler.Answer(new MemoryAnswer { Value = new MemoryAnswerValue(MemoryPositionOrLabel.Position, position) });
             return ask ? What("label") : -1;
         }
         int PositionStage(int stage, bool ask = true) => Position(positions[stage], ask);
 
         int Label(int label, bool ask = true)
         {
-            _ioHandler.ShowLine($"Press the button labeled \"{label}\"");
+            _ioHandler.Answer(new MemoryAnswer { Value = new MemoryAnswerValue(MemoryPositionOrLabel.Label, label) });
             return ask ? What("position") : -1;
         }
         int LabelStage(int stage, bool ask = true) => Label(labels[stage], ask);
@@ -120,3 +122,5 @@ public class MemorySolver : Solvable<MemorySolver>
 
     }
 }
+
+public enum MemoryPositionOrLabel { Position, Label }

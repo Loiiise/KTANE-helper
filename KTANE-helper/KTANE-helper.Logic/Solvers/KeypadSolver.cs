@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using KTANE_helper.Logic.IO;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -8,11 +6,10 @@ public class KeypadSolver : Solvable<KeypadSolver>
 {
     public override void Solve(BombKnowledge bk)
     {
-        var resultColumn = GetColumn();
-        _ioHandler.ShowLine($"Solution found! Your result column is: {DisplaySymbols(resultColumn)}");
+        _ioHandler.Answer(new KeypadAnswer { Value = GetColumn() });
     }
 
-    private static List<Symbol> GetColumn()
+    private static KeypadSymbol[] GetColumn()
     {
         var stringKeys = allSymbols.Select(GetSymbolString);
         var keyString = _ioHandler.Query("What symbol do you see?", stringKeys);
@@ -29,91 +26,91 @@ public class KeypadSolver : Solvable<KeypadSolver>
     {
         if (a == b) return true;
 
-        var setA = new HashSet<Symbol>(columnToSymbol[a]);
+        var setA = new HashSet<KeypadSymbol>(columnToSymbol[a]);
         var uniqueA = setA.Except(columnToSymbol[b]);
 
         return SeeAny(uniqueA);
     }
 
-    private static bool SeeAny(IEnumerable<Symbol> symbols) => _ioHandler.Ask($"Do you see any of {DisplaySymbols(symbols)}\n");
+    private static bool SeeAny(IEnumerable<KeypadSymbol> symbols) => _ioHandler.Ask($"Do you see any of {DisplaySymbols(symbols)}\n");
 
-    private static string DisplaySymbols(IEnumerable<Symbol> symbols) => string.Join("", symbols.Select(s => "\n    " + GetSymbolString(s))); // todo make general
+    public static string DisplaySymbols(IEnumerable<KeypadSymbol> symbols) => string.Join("", symbols.Select(s => "\n    " + GetSymbolString(s)));
 
-    private enum Symbol { O, A, Lambda, N, Spin, H, CMirrored, E, Krul, Ster, Questionmark, Copyright, W, KK, R, Zes, P, B, Smiley, Psi, C, Slang, SterGevuld, Equals, Ae, GroteN, Omega };
+    private static IEnumerable<KeypadSymbol> allSymbols = Enum.GetValues(typeof(KeypadSymbol)).Cast<KeypadSymbol>();
 
-    private static IEnumerable<Symbol> allSymbols = Enum.GetValues(typeof(Symbol)).Cast<Symbol>();
-
-    private static string GetSymbolString(Symbol symbol) => symbol switch
+    private static string GetSymbolString(KeypadSymbol symbol) => symbol switch
     {
-        Symbol.O => "o",
-        Symbol.A => "a",
-        Symbol.Lambda => "lambda",
-        Symbol.N => "n",
-        Symbol.Spin => "spin",
-        Symbol.H => "h",
-        Symbol.CMirrored => "cc",
-        Symbol.E => "\"e",
-        Symbol.Krul => "krul",
-        Symbol.Ster => "ster",
-        Symbol.Questionmark => "?",
-        Symbol.Copyright => "cr",
-        Symbol.W => "w",
-        Symbol.KK => "kk",
-        Symbol.R => "r",
-        Symbol.Zes => "6",
-        Symbol.P => "p",
-        Symbol.B => "b",
-        Symbol.Smiley => ":)",
-        Symbol.Psi => "psi",
-        Symbol.C => "c",
-        Symbol.Slang => "slang",
-        Symbol.SterGevuld => "gevulde ster",
-        Symbol.Equals => "=",
-        Symbol.Ae => "ae",
-        Symbol.GroteN => "grote n",
-        Symbol.Omega => "omega",
-        _ => throw new ArgumentOutOfRangeException(nameof(Symbol)),
+        KeypadSymbol.O => "o",
+        KeypadSymbol.A => "a",
+        KeypadSymbol.Lambda => "lambda",
+        KeypadSymbol.N => "n",
+        KeypadSymbol.Spin => "spin",
+        KeypadSymbol.H => "h",
+        KeypadSymbol.CMirrored => "cc",
+        KeypadSymbol.E => "\"e",
+        KeypadSymbol.Krul => "krul",
+        KeypadSymbol.Ster => "ster",
+        KeypadSymbol.Questionmark => "?",
+        KeypadSymbol.Copyright => "cr",
+        KeypadSymbol.W => "w",
+        KeypadSymbol.KK => "kk",
+        KeypadSymbol.R => "r",
+        KeypadSymbol.Zes => "6",
+        KeypadSymbol.P => "p",
+        KeypadSymbol.B => "b",
+        KeypadSymbol.Smiley => ":)",
+        KeypadSymbol.Psi => "psi",
+        KeypadSymbol.C => "c",
+        KeypadSymbol.Slang => "slang",
+        KeypadSymbol.SterGevuld => "gevulde ster",
+        KeypadSymbol.Equals => "=",
+        KeypadSymbol.Ae => "ae",
+        KeypadSymbol.GroteN => "grote n",
+        KeypadSymbol.Omega => "omega",
+        _ => throw new ArgumentOutOfRangeException(nameof(KeypadSymbol)),
     };
-    private static Symbol GetSymbolFromString(string stringSymbol) => allSymbols.First(k => GetSymbolString(k) == stringSymbol);
+    private static KeypadSymbol GetSymbolFromString(string stringSymbol) => allSymbols.First(k => GetSymbolString(k) == stringSymbol);
 
-    private static readonly Dictionary<Symbol, List<int>> symbolToColumn = new()
+    private static readonly Dictionary<KeypadSymbol, int[]> symbolToColumn = new()
     {
-        { Symbol.O, new() { 0, 1 } },
-        { Symbol.A, new() { 0 } },
-        { Symbol.Lambda, new() { 0, 2 } },
-        { Symbol.N, new() { 0 } },
-        { Symbol.Spin, new() { 0, 3 } },
-        { Symbol.H, new() { 0, 1 } },
-        { Symbol.CMirrored, new() { 0, 1 } },
-        { Symbol.E, new() { 1, 5 } },
-        { Symbol.Krul, new() { 1, 2 } },
-        { Symbol.Ster, new() { 1, 2 } },
-        { Symbol.Questionmark, new() { 1, 3 } },
-        { Symbol.Copyright, new() { 2 } },
-        { Symbol.W, new() { 2 } },
-        { Symbol.KK, new() { 2, 3 } },
-        { Symbol.R, new() { 2 } },
-        { Symbol.Zes, new() { 3, 5 } },
-        { Symbol.P, new() { 3, 4 } },
-        { Symbol.B, new() { 3, 4 } },
-        { Symbol.Smiley, new() { 3, 4 } },
-        { Symbol.Psi, new() { 4, 5 } },
-        { Symbol.C, new() { 4 } },
-        { Symbol.Slang, new() { 4 } },
-        { Symbol.SterGevuld, new() { 4 } },
-        { Symbol.Equals, new() { 5 } },
-        { Symbol.Ae, new() { 5 } },
-        { Symbol.GroteN, new() { 5 } },
-        { Symbol.Omega, new() { 5 } },
+        { KeypadSymbol.O, [ 0, 1 ] },
+        { KeypadSymbol.A, [ 0 ] },
+        { KeypadSymbol.Lambda, [ 0, 2 ] },
+        { KeypadSymbol.N, [ 0 ] },
+        { KeypadSymbol.Spin, [ 0, 3 ] },
+        { KeypadSymbol.H, [ 0, 1 ] },
+        { KeypadSymbol.CMirrored, [ 0, 1 ] },
+        { KeypadSymbol.E, [ 1, 5 ] },
+        { KeypadSymbol.Krul, [ 1, 2 ] },
+        { KeypadSymbol.Ster, [ 1, 2 ] },
+        { KeypadSymbol.Questionmark, [ 1, 3 ] },
+        { KeypadSymbol.Copyright, [ 2 ] },
+        { KeypadSymbol.W, [ 2 ] },
+        { KeypadSymbol.KK, [ 2, 3 ] },
+        { KeypadSymbol.R, [ 2 ] },
+        { KeypadSymbol.Zes, [ 3, 5 ] },
+        { KeypadSymbol.P, [ 3, 4 ] },
+        { KeypadSymbol.B, [ 3, 4 ] },
+        { KeypadSymbol.Smiley, [ 3, 4 ] },
+        { KeypadSymbol.Psi, [ 4, 5 ] },
+        { KeypadSymbol.C, [ 4 ] },
+        { KeypadSymbol.Slang, [ 4 ] },
+        { KeypadSymbol.SterGevuld, [ 4 ] },
+        { KeypadSymbol.Equals, [ 5 ] },
+        { KeypadSymbol.Ae, [ 5 ] },
+        { KeypadSymbol.GroteN, [ 5 ] },
+        { KeypadSymbol.Omega, [ 5 ] },
     };
 
-    private static readonly Dictionary<int, List<Symbol>> columnToSymbol = new()
+    private static readonly Dictionary<int, KeypadSymbol[]> columnToSymbol = new()
     {
-        { 0, new() { Symbol.O, Symbol.A, Symbol.Lambda, Symbol.N, Symbol.Spin, Symbol.H, Symbol.CMirrored } },
-        { 1, new() { Symbol.E, Symbol.O, Symbol.CMirrored, Symbol.Krul, Symbol.Ster, Symbol.H, Symbol.Questionmark } },
-        { 2, new() { Symbol.Copyright, Symbol.W, Symbol.Krul, Symbol.KK, Symbol.R, Symbol.Lambda, Symbol.Ster } },
-        { 3, new() { Symbol.Zes, Symbol.P, Symbol.B, Symbol.Spin, Symbol.KK, Symbol.Questionmark, Symbol.Smiley } },
-        { 4, new() { Symbol.Psi, Symbol.Smiley, Symbol.B, Symbol.C, Symbol.P, Symbol.Slang, Symbol.SterGevuld } },
-        { 5, new() { Symbol.Zes, Symbol.E, Symbol.Equals, Symbol.Ae, Symbol.Psi, Symbol.GroteN, Symbol.Omega } },
+        { 0, [ KeypadSymbol.O, KeypadSymbol.A, KeypadSymbol.Lambda, KeypadSymbol.N, KeypadSymbol.Spin, KeypadSymbol.H, KeypadSymbol.CMirrored ] },
+        { 1, [ KeypadSymbol.E, KeypadSymbol.O, KeypadSymbol.CMirrored, KeypadSymbol.Krul, KeypadSymbol.Ster, KeypadSymbol.H, KeypadSymbol.Questionmark ] },
+        { 2, [ KeypadSymbol.Copyright, KeypadSymbol.W, KeypadSymbol.Krul, KeypadSymbol.KK, KeypadSymbol.R, KeypadSymbol.Lambda, KeypadSymbol.Ster ] },
+        { 3, [ KeypadSymbol.Zes, KeypadSymbol.P, KeypadSymbol.B, KeypadSymbol.Spin, KeypadSymbol.KK, KeypadSymbol.Questionmark, KeypadSymbol.Smiley ] },
+        { 4, [ KeypadSymbol.Psi, KeypadSymbol.Smiley, KeypadSymbol.B, KeypadSymbol.C, KeypadSymbol.P, KeypadSymbol.Slang, KeypadSymbol.SterGevuld ] },
+        { 5, [ KeypadSymbol.Zes, KeypadSymbol.E, KeypadSymbol.Equals, KeypadSymbol.Ae, KeypadSymbol.Psi, KeypadSymbol.GroteN, KeypadSymbol.Omega ] },
     };
 }
+
+public enum KeypadSymbol { O, A, Lambda, N, Spin, H, CMirrored, E, Krul, Ster, Questionmark, Copyright, W, KK, R, Zes, P, B, Smiley, Psi, C, Slang, SterGevuld, Equals, Ae, GroteN, Omega };

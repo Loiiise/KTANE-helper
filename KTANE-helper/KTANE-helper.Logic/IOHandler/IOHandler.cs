@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace KTANE_helper.Logic;
+namespace KTANE_helper.Logic.IO;
 
 public abstract class IOHandler : IIOHandler
 {
@@ -18,6 +18,8 @@ public abstract class IOHandler : IIOHandler
     {
         if (scopeStack.Count > 0) scopeStack.Pop();
     }
+
+    public abstract void Answer<T>(Answer<T> answer);
 
     public abstract void Show(string message);
     public abstract void ShowLine(string message);
@@ -116,30 +118,5 @@ public abstract class IOHandler : IIOHandler
             Prompt();
             yield return ReadLine();
         }
-    }
-
-    public string PositionWord(int p) => p switch
-    {
-        0 => "zeroeth",
-        1 => "first",
-        2 => "second",
-        3 => "third",
-        4 => "fourth",
-        5 => "fifth",
-        6 => "sixth",
-        _ => $"{p}th"
-    };
-
-    public bool HasIllegalCharacters(string input, params char[] legalCharacters)
-    {
-        foreach (char c in input)
-        {
-            if (!legalCharacters.Contains(c))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

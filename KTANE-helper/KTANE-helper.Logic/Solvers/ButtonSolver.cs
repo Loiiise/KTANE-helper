@@ -1,4 +1,6 @@
-﻿namespace KTANE_helper.Logic.Solvers;
+﻿using KTANE_helper.Logic.IO;
+
+namespace KTANE_helper.Logic.Solvers;
 
 public class ButtonSolver : Solvable<ButtonSolver>
 {
@@ -16,16 +18,19 @@ public class ButtonSolver : Solvable<ButtonSolver>
         else if (colour == 'r' && text == "hold") PressAndRelease();
         else HoldAndRelease();
 
-        void PressAndRelease() => _ioHandler.ShowLine("Press and immediately release the button.");
+        void PressAndRelease() => _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.ReleaseImmediately, null) });
 
         void HoldAndRelease()
         {
+            _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.Hold, null) });
             string colour = _ioHandler.Query("What colour is the strip?");
             if (colour == "b") ReleaseWhen(4);
             else if (colour == "g") ReleaseWhen(5);
             else ReleaseWhen(1);
 
-            void ReleaseWhen(int i) => _ioHandler.ShowLine($"Release when the countdown timer has a {i} in any position");
+            void ReleaseWhen(int i) => _ioHandler.Answer(new ButtonAnswer { Value = new ButtonAnswerValue(ButtonReleaseOrHold.ReleaseWhen, i) });
         }
     }
 }
+
+public enum ButtonReleaseOrHold { ReleaseImmediately, Hold, ReleaseWhen }

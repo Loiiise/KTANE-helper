@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using KTANE_helper.Logic.IO;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -56,7 +55,7 @@ public class MorseCodeSolver : Solvable<MorseCodeSolver>
         string answer;
         while (!ProcessLetter(_ioHandler.Query("What is a letter you see?"), out answer)) ;
 
-        if (answer is not null) _ioHandler.ShowLine($"The correct frequency is {words[answer]} MHz");
+        if (answer is not null) _ioHandler.Answer(new MorseCodeAnswer { Value = words[answer] });
         else
         {
             _ioHandler.ShowLine("you f'ed up!");

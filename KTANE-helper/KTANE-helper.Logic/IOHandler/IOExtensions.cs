@@ -1,7 +1,32 @@
-﻿namespace KTANE_helper.Logic;
+namespace KTANE_helper.Logic.IO;
 
 public static class IOExtensions
 {
+    public static string PositionWord(this int p) => p switch
+    {
+        0 => "zeroeth",
+        1 => "first",
+        2 => "second",
+        3 => "third",
+        4 => "fourth",
+        5 => "fifth",
+        6 => "sixth",
+        _ => $"{p}th"
+    };
+
+    public static bool HasIllegalCharacters(this string input, params char[] legalCharacters)
+    {
+        foreach (char c in input)
+        {
+            if (!legalCharacters.Contains(c))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// Pluralise expects a word that is assumed to be non-pluralised, and either a collection or a count.
     /// It then returns that word in either its plural or non-plural form depending on the size of the collection

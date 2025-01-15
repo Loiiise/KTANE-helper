@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KTANE_helper.Logic;
+namespace KTANE_helper.Logic.IO;
 
 public interface IIOHandler
 {
@@ -8,6 +8,8 @@ public interface IIOHandler
     public void PromptScopeAdd(string str);
     public void PromptScopeUp(string sc);
     public void PromptScopeDown();
+
+    public void Answer<T>(Answer<T> answer);
 
     public void Show(string message);
     public void ShowLine(string message);
@@ -26,8 +28,4 @@ public interface IIOHandler
     public bool Ask(string question);
 
     public IEnumerable<string> GetLines(int lines);
-
-    public string PositionWord(int p);
-
-    public bool HasIllegalCharacters(string input, params char[] legalCharacters);
 }

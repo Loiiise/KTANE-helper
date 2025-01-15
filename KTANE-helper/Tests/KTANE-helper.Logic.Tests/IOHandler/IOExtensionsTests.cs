@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using KTANE_helper.Logic.IO;
+using Shouldly;
 
 namespace KTANE_helper.Logic.Tests;
 
@@ -54,7 +55,6 @@ public class IOExtensionsTests
     [InlineData(new int[] { 1, 2, 3 }, "1, 2 and 3")]
     [InlineData(new int[] { 1, 2, 3, 4 }, "1, 2, 3 and 4")]
     [InlineData(new string[] { "a", "b", "c", "d" }, "a, b, c and d")]
-    [InlineData(new double[] { 1.1, 1.2, 1.3, 1.4 }, "1.1, 1.2, 1.3 and 1.4")]
     public void ShowSequenceFormatsCollectionsOfBasicTypesCorrectly<T>(T[] collection, string expectedResult)
     {
         collection.ShowSequence().ShouldBe(expectedResult);

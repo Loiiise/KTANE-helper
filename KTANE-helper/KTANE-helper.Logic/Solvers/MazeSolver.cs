@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KTANE_helper.Logic.IO;
 using System.Text;
 
 namespace KTANE_helper.Logic.Solvers;
@@ -16,14 +15,14 @@ public class MazeSolver : Solvable<MazeSolver>
         var targetPosition = Maze.LinearCoordinate(_ioHandler.CoordinateQuery("Where is the triangle?", Maze.MinimalValue, Maze.MaximalValue));
 
         // Calculate and print path
-        _ioHandler.ShowLine("The solution to the maze is: " + BFS(maze, startPosition, targetPosition));
+        _ioHandler.Answer(new MazeAnswer { Value = BFS(maze, startPosition, targetPosition).ToArray() });
     }
 
-    private string BFS(Maze maze, int startPosition, int targetPosition)
+    private IEnumerable<MazeDirection> BFS(Maze maze, int startPosition, int targetPosition)
     {
         if (startPosition == targetPosition)
         {
-            return $"Start position {startPosition} is the target.";
+            return Array.Empty<MazeDirection>();
         }
 
         Queue<int> queue = new Queue<int>();
@@ -56,10 +55,10 @@ public class MazeSolver : Solvable<MazeSolver>
             }
         }
 
-        return "No path found.";
+        throw new ArgumentException();
     }
 
-    private string ReconstructPath(Dictionary<int, int?> cameFrom, int startPosition, int targetPosition)
+    private IEnumerable<MazeDirection> ReconstructPath(Dictionary<int, int?> cameFrom, int startPosition, int targetPosition)
     {
         List<int> path = new List<int>();
         int? current = targetPosition;
@@ -71,21 +70,18 @@ public class MazeSolver : Solvable<MazeSolver>
         }
 
         path.Reverse();
-        var stringBuilder = new StringBuilder();
 
         for (int i = 1; i < path.Count; ++i)
         {
-            stringBuilder.Append((path[i] - path[i - 1]) switch
+            yield return (path[i] - path[i - 1]) switch
             {
-                -1 => "Left",
-                1 => "Right",
-                -Maze.Width => "Up",
-                Maze.Width => "Down",
-                _ => "???",
-            } + " ");
+                -1 => MazeDirection.Left,
+                1 => MazeDirection.Right,
+                -Maze.Width => MazeDirection.Up,
+                Maze.Width => MazeDirection.Down,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
         }
-
-        return stringBuilder.ToString();
     }
 }
 
@@ -256,3 +252,4 @@ public class Maze
     public const int Height = MaximalValue;
     public const int Size = Width * Height;
 }
+public enum MazeDirection { Left, Right, Up, Down }

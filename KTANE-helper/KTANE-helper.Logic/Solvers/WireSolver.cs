@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using KTANE_helper.Logic.IO;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -51,10 +51,8 @@ public class WireSolver : Solvable<WireSolver>
                 return;
         }
 
-        void Cut(int wire)
-        {
-            _ioHandler.ShowLine($"Cut the {_ioHandler.PositionWord(wire)} wire");
-        }
+        void Cut(int wire) => _ioHandler.Answer(new WireAnswer() { Value = wire });
+
         void CutLast(char colour) => Cut(LastIndex(colour));
 
         int LastIndex(char colour)

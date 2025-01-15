@@ -1,4 +1,4 @@
-﻿using System;
+﻿using KTANE_helper.Logic.IO;
 
 namespace KTANE_helper.Logic.Solvers;
 
@@ -11,7 +11,7 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
             var userInput = _ioHandler.Query("What is the state of the wire? (R for red, B for blue, S for star and L for LED).").ToUpper();
 
             if (userInput.Length > 4 ||
-                _ioHandler.HasIllegalCharacters(userInput, 'R', 'B', 'S', 'L', 'W'))
+                userInput.HasIllegalCharacters('R', 'B', 'S', 'L', 'W'))
             {
                 break;
             }
@@ -25,7 +25,7 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
 
             var instruction = GetInstructionFromState(state);
 
-            _ioHandler.ShowLine(ShouldICut(instruction, bk) ? _cutMessage : _dontCutMessage);
+            _ioHandler.Answer(new ComplicatedWiresAnswer { Value = ShouldICut(instruction, bk) });
         }
     }
 
@@ -68,9 +68,6 @@ public class ComplicatedWiresSolver : Solvable<ComplicatedWiresSolver>
         Instruction.BatteryRelated => bk.Batteries() >= 2,
         _ => throw new ArgumentOutOfRangeException(nameof(instruction)),
     };
-
-    private const string _cutMessage = "CUT THE WIRE!";
-    private const string _dontCutMessage = "Don't cut.";
 }
 
 [Flags]
