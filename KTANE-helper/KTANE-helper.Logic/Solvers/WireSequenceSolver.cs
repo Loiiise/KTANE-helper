@@ -54,10 +54,11 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
                 Answer(WireSequenceAnswerState.Custom, wireIndices);
             }
         }
-
-        void Answer(WireSequenceAnswerState state, int[] wiresToCutIfCustom = null)
-            => _ioHandler.Answer(new WireSequenceAnswer { Value = new WireSequenceAnswerValue(state, wiresToCutIfCustom) });
     }
+
+    private void Answer(WireSequenceAnswerState state) => Answer(state, Array.Empty<int>());
+    private void Answer(WireSequenceAnswerState state, int[] wiresToCutIfCustom)
+        => _ioHandler.Answer(new WireSequenceAnswer { Value = new WireSequenceAnswerValue(state, wiresToCutIfCustom) });
 
     private IEnumerable<Wire> GetWires(string input)
     {

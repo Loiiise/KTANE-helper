@@ -40,6 +40,7 @@ internal class CLIHandler : IOHandler
             WireSequenceAnswerState.FirstOnly => "Cut the FIRST wire",
             WireSequenceAnswerState.LastOnly => "Cut the LAST wire",
             WireSequenceAnswerState.Custom => $"Cut {"wire".Pluralise(wireSequenceAnswer.Value.WiresToCutIfCustom)} {wireSequenceAnswer.Value.WiresToCutIfCustom.ShowSequence()}",
+            _ => ErrorInSolverMessage(nameof(WireSequenceSolver)),
         },
         WireAnswer wireAnswer => $"Cut the {wireAnswer.Value.PositionWord()} wire",
         _ => "Answer for this puzzle was received, but displaying it has not been implemented",
