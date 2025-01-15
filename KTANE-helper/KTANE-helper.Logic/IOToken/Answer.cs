@@ -34,7 +34,7 @@ public sealed record MazeAnswer : Answer<MazeDirection[]> { }
 /// The x'th position or label which should be pressed. 
 /// </summary>
 /// <param name="PositionOrLabel">Self explanatory</param>
-/// <param name="Value">The x'th postition or label to press, depenant on <a cref="MemoryPositionOrLabel.ReleaseWhen"/></param>
+/// <param name="Value">The x'th postition or label to press, dependant on <a cref="MemoryPositionOrLabel.ReleaseWhen"/></param>
 public sealed record MemoryAnswerValue(MemoryPositionOrLabel PositionOrLabel, int Value);
 public sealed record MemoryAnswer : Answer<MemoryAnswerValue> { }
 
