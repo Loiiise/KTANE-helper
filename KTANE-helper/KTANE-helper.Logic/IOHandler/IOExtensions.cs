@@ -34,7 +34,7 @@ public static class IOExtensions
         var strings = collection.Select(StringValueOrDefault);
 
         // Separate the last item from the preceding items
-        var preceding = strings.Take(collection.Count() - 1);
+        var preceding = strings.SkipLast(1);
         var last = strings.Last();
 
         // If there are no preceding items, return just the last item
@@ -46,9 +46,11 @@ public static class IOExtensions
         // Maps a T to a string representation or a default value if it is null
         static string StringValueOrDefault(T item)
         {
-            if (item is null || item.ToString() is not string str) return "???";
+            if (item is null || item.ToString() is not string str) return _nullString;
 
             return str;
         }
     }
+
+    private const string _nullString = "???";
 }
