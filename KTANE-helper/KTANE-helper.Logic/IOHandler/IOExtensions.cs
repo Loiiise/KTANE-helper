@@ -17,6 +17,9 @@ public static class IOExtensions
         _ => $"{p}th"
     };
 
+    /// <summary>
+    /// Returns whether or not the provided strings contains any characters that are not in the specified character set.
+    /// </summary>
     public static bool HasIllegalCharacters(this string input, params char[] legalCharacters)
     {
         foreach (char c in input)

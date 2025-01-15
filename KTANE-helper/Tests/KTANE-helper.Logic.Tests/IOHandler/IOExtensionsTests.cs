@@ -28,6 +28,33 @@ public class IOExtensionsTests
         number.PositionWord().ShouldBe(expected);
     }
 
+    public static IEnumerable<object[]> CharacterSetsABCs() =>
+        new char[][] { new[] { 'a', 'b', 'c' }, new[] { 'a', 'a', 'a', 'a' }, new[] { 'b', 'a' } }
+        .Select(p => new object[] { p });
+
+    [Theory, MemberData(nameof(CharacterSetsABCs))]
+    public void EmptyStringDoesNotHaveIllegalCharacters(char[] allowedCharacters)
+    {
+        "".HasIllegalCharacters(allowedCharacters).ShouldBeFalse();
+        string.Empty.HasIllegalCharacters().ShouldBeFalse();
+    }
+
+    [Theory, CombinatorialData]
+    public void StringsWithOnlyLegalCharactersAreAllowed(
+        [CombinatorialValues("a", "aaaaaaaaaaaaaa", "aaa")] string abcString,
+        [CombinatorialMemberData(nameof(CharacterSetsABCs))] params char[] abcCharacters)
+    {
+        abcString.HasIllegalCharacters(abcCharacters).ShouldBeFalse();
+    }
+
+    [Theory, CombinatorialData]
+    public void StringsWithAnyIllegalCharacterAreNotAllowed(
+        [CombinatorialValues("abcd", "a basic string", "because", "bbbaaaaaaappaa")] string abcString,
+        [CombinatorialMemberData(nameof(CharacterSetsABCs))] params char[] abcCharacters)
+    {
+        abcString.HasIllegalCharacters(abcCharacters).ShouldBeTrue();
+    }
+
     public static IEnumerable<string> GetTestStrings
         => ["", "not empty"];
 
