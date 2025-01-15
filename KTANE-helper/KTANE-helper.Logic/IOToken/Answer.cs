@@ -58,13 +58,11 @@ public sealed record SimonSaysAnswer : Answer<SimonSaysColour[]> { }
 /// </summary>
 public sealed record WhosOnFirstAnswer : Answer<string[]> { }
 
-public sealed record WireSequenceAnswer : Answer<int> 
-{ 
-    public WireSequenceAnswer() 
-    {
-        throw new NotImplementedException();
-    }
-}
+/// <summary>
+/// Which wires should be cut.
+/// </summary>
+public sealed record WireSequenceAnswerValue(WireSequenceAnswerState WireSequenceAnswerState, int[] WiresToCutIfCustom);
+public sealed record WireSequenceAnswer : Answer<WireSequenceAnswerValue> { }
 
 /// <summary>
 /// The x'th wire that should be cut.

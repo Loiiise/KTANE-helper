@@ -36,24 +36,27 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
             }
 
             // If everything is true
-            if (cut.All(x => x)) _ioHandler.ShowLine("Cut EVERYTHING");
+            if (cut.All(x => x)) Answer(WireSequenceAnswerState.Everything);
             // If everything is false
-            else if (cut.All(x => !x)) _ioHandler.ShowLine("Cut NOTHING");
+            else if (cut.All(x => !x)) Answer(WireSequenceAnswerState.Nothing);
             // If the first thing is true and the rest is false
-            else if (cut.First() && cut.Skip(1).All(x => !x)) _ioHandler.ShowLine("Cut the FIRST wire");
+            else if (cut.First() && cut.Skip(1).All(x => !x)) Answer(WireSequenceAnswerState.FirstOnly);
             // If the last thing is true and the rest is false
-            else if (cut.Last() && cut.Take(cut.Count - 1).All(x => !x)) _ioHandler.ShowLine("Cut the LAST wire");
+            else if (cut.Last() && cut.Take(cut.Count - 1).All(x => !x)) Answer(WireSequenceAnswerState.LastOnly);
             else
             {
-                var wireIndices = cut 
+                var wireIndices = cut
                     .Zip(Enumerable.Range(1, cut.Count)) // Zip the booleans with their index
                     .Where(x => x.First)                 // Filter only those tuples where the boolean is true
-                    .Select(x => x.Second);              // Throw away the boolean and keep just the index
+                    .Select(x => x.Second)               // Throw away the boolean and keep just the index
+                    .ToArray();
 
-                // Show generic semi-summarized output
-                _ioHandler.ShowLine($"Cut {"wire".Pluralise(wireIndices)} {wireIndices.ShowSequence()}");
+                Answer(WireSequenceAnswerState.Custom, wireIndices);
             }
         }
+
+        void Answer(WireSequenceAnswerState state, int[] wiresToCutIfCustom = null)
+            => _ioHandler.Answer(new WireSequenceAnswer { Value = new WireSequenceAnswerValue(state, wiresToCutIfCustom) });
     }
 
     private IEnumerable<Wire> GetWires(string input)
@@ -135,4 +138,13 @@ enum WireSequenceColour
     Red,
     Blue,
     Black
+}
+
+public enum WireSequenceAnswerState
+{
+    Everything,
+    Nothing,
+    FirstOnly,
+    LastOnly,
+    Custom,
 }

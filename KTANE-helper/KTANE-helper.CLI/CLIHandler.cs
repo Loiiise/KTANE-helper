@@ -13,7 +13,7 @@ internal class CLIHandler : IOHandler
     {
         ButtonAnswer buttonAnswer => buttonAnswer.Value.ReleaseOrHold switch
         {
-            ButtonReleaseOrHold.ReleaseImmediatly => "Press and immediately release the button.",
+            ButtonReleaseOrHold.ReleaseImmediately => "Press and immediately release the button.",
             ButtonReleaseOrHold.Hold => "Hold the button. Don't let go yet.", 
             ButtonReleaseOrHold.ReleaseWhen => $"Release when the countdown timer has a {buttonAnswer.Value.When } in any position",
             _ => ErrorInSolverMessage(nameof(ButtonSolver)),
@@ -33,7 +33,14 @@ internal class CLIHandler : IOHandler
         PasswordAnswer passwordAnswer => $"Password is {passwordAnswer.Value}",
         SimonSaysAnswer simonSaysAnswer => $"Enter the following sequence: {string.Join("", simonSaysAnswer.Value.Select(c => "\n    " + c.ToString()))}",
         WhosOnFirstAnswer whosOnFirstAnswer => string.Join('\n', whosOnFirstAnswer.Value),
-        WireSequenceAnswer wireSequenceAnswer => throw new NotImplementedException(),
+        WireSequenceAnswer wireSequenceAnswer => wireSequenceAnswer.Value.WireSequenceAnswerState switch 
+        { 
+            WireSequenceAnswerState.Everything => "Cut EVERYTHING",
+            WireSequenceAnswerState.Nothing => "Cut NOTHING",
+            WireSequenceAnswerState.FirstOnly => "Cut the FIRST wire",
+            WireSequenceAnswerState.LastOnly => "Cut the LAST wire",
+            WireSequenceAnswerState.Custom => $"Cut {"wire".Pluralise(wireSequenceAnswer.Value.WiresToCutIfCustom)} {wireSequenceAnswer.Value.WiresToCutIfCustom.ShowSequence()}",
+        },
         WireAnswer wireAnswer => $"Cut the {wireAnswer.Value.PositionWord()} wire",
         _ => "Answer for this puzzle was received, but displaying it has not been implemented",
     });
