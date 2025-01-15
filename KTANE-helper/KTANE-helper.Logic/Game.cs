@@ -1,6 +1,5 @@
 using KTANE_helper.Logic.IO;
 using KTANE_helper.Logic.Solvers;
-using System.Collections.Generic;
 
 namespace KTANE_helper.Logic;
 
@@ -18,11 +17,9 @@ public class Game
             foreach (var value in values)
                 _tokenMap[value] = token;
         }
-
-        Play();
     }
 
-    private void Play()
+    public void Play()
     {
         InputToken token;
 
