@@ -2,7 +2,7 @@
 
 namespace KTANE_helper.Logic.IO;
 
-public abstract record Answer<T> : IIOToken
+public abstract record Answer<T> : IOToken
 {
     public required T Value { get; init; }
 }
