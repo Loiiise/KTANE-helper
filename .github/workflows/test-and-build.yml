@@ -53,4 +53,4 @@ jobs:
 
     # Check if code is in accordance with HBM codestyle
     - name: Format
-      run: dotnet format --verify-no-changes --verbosity diagnostic
+      run: dotnet format KTANE-helper --verify-no-changes --verbosity diagnostic
