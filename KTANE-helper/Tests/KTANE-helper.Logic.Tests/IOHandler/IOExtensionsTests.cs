@@ -46,4 +46,15 @@ public class IOExtensionsTests
     {
         Should.Throw<ArgumentNullException>(() => str.Pluralise(collection));
     }
+
+    [Theory]
+    [InlineData(new int[] { }, "")]
+    [InlineData(new int[] { 1 }, "1")]
+    [InlineData(new int[] { 1, 2 }, "1 and 2")]
+    [InlineData(new int[] { 1, 2, 3 }, "1, 2 and 3")]
+    [InlineData(new int[] { 1, 2, 3, 4 }, "1, 2, 3 and 4")]
+    public void ShowSequenceFormatsStringCorrectly<T>(T[] collection, string expectedResult)
+    {
+        collection.ShowSequence().ShouldBe(expectedResult);
+    }
 }

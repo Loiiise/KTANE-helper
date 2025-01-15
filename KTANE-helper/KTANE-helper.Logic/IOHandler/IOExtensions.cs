@@ -25,7 +25,7 @@ public static class IOExtensions
     /// </summary>
     /// <typeparam name="T">The type of the items to sequencify.</typeparam>
     /// <param name="collection">The items to sequencify.</param>
-    internal static string ShowSequence<T>(this IEnumerable<T> collection)
+    public static string ShowSequence<T>(this IEnumerable<T> collection)
     {
         // Return if the collection is empty
         if (collection is null || !collection.Any()) return string.Empty;
