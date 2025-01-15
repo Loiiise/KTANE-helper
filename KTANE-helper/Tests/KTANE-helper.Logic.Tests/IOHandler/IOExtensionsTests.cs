@@ -53,9 +53,24 @@ public class IOExtensionsTests
     [InlineData(new int[] { 1, 2 }, "1 and 2")]
     [InlineData(new int[] { 1, 2, 3 }, "1, 2 and 3")]
     [InlineData(new int[] { 1, 2, 3, 4 }, "1, 2, 3 and 4")]
-    public void ShowSequenceFormatsStringCorrectly<T>(T[] collection, string expectedResult)
+    [InlineData(new string[] { "a", "b", "c", "d" }, "a, b, c and d")]
+    [InlineData(new double[] { 1.1, 1.2, 1.3, 1.4 }, "1.1, 1.2, 1.3 and 1.4")]
+    public void ShowSequenceFormatsCollectionsOfBasicTypesCorrectly<T>(T[] collection, string expectedResult)
     {
         collection.ShowSequence().ShouldBe(expectedResult);
+    }
+
+    [Fact]
+    public void ShowSequenceHandlesComplexTypesGracefully()
+    {
+        var collection = new List<List<int>> 
+        { 
+            new() { 1, 2 }, 
+            new() { 3 }, 
+            new() { 4, 5, 6 } 
+        };
+
+        collection.ShowSequence().ShouldBe("System.Collections.Generic.List`1[System.Int32], System.Collections.Generic.List`1[System.Int32] and System.Collections.Generic.List`1[System.Int32]");
     }
 
     [Fact]
