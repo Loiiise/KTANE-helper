@@ -1,4 +1,4 @@
-name: Windows Test and Build Logic
+name: Windows Test, Format and Build
 
 on:
   push:
