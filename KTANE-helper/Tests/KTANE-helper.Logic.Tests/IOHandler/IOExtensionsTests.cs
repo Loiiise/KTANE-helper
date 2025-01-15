@@ -8,7 +8,7 @@ public class IOExtensionsTests
         => ["", "not empty"];
 
     [Theory, CombinatorialData]
-    public void TestPluraliseUsingCount_PluralCase(
+    public void PluraliseReturnsAPluralWordWhenTheCountIsZeroOrGreaterThanOne(
         [CombinatorialValues(int.MinValue, -2, 0, 2, int.MaxValue)] int count,
         [CombinatorialMemberData(nameof(GetTestStrings))] string str)
     {
@@ -16,7 +16,7 @@ public class IOExtensionsTests
     }
 
     [Theory, CombinatorialData]
-    public void TestPluraliseUsingCount_NonPluralCase(
+    public void PluraliseReturnsTheInputWordWhenTheCountIsMinusOneOrOne(
         [CombinatorialValues(-1, 1)] int count,
         [CombinatorialMemberData(nameof(GetTestStrings))] string str)
     {
@@ -24,7 +24,7 @@ public class IOExtensionsTests
     }
 
     [Theory, CombinatorialData]
-    public void TestPluraliseUsingCollection_PluralCase(
+    public void PluraliseReturnsAPluralWordWithAnEmptyCollectionOrACollectionOfSizeGreaterThanOne(
         [CombinatorialValues(new int[] { }, new int[] { 1, 2 })] IEnumerable<int> collection,
         [CombinatorialMemberData(nameof(GetTestStrings))] string str)
     {
@@ -32,7 +32,7 @@ public class IOExtensionsTests
     }
 
     [Theory, CombinatorialData]
-    public void TestPluraliseUsingCollection_NonPluralCase(
+    public void PluraliseReturnsTheInputWordWithACollectionOfSizeOne(
         [CombinatorialValues(new int[] { 1 })] IEnumerable<int> collection,
         [CombinatorialMemberData(nameof(GetTestStrings))] string str)
     {
@@ -40,7 +40,7 @@ public class IOExtensionsTests
     }
 
     [Theory, CombinatorialData]
-    public void TestPluraliseUsingCollection_NullCollectionCase<T>(
+    public void PluraliseThrowsArgumentNullExceptionWhenTheCollectionIsNull<T>(
         [CombinatorialValues(null)] IEnumerable<T> collection,
         [CombinatorialMemberData(nameof(GetTestStrings))] string str)
     {
