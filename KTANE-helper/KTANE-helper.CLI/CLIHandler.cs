@@ -14,18 +14,18 @@ internal class CLIHandler : IOHandler
         ButtonAnswer buttonAnswer => buttonAnswer.Value.ReleaseOrHold switch
         {
             ButtonReleaseOrHold.ReleaseImmediately => "Press and immediately release the button.",
-            ButtonReleaseOrHold.Hold => "Hold the button. Don't let go yet.", 
-            ButtonReleaseOrHold.ReleaseWhen => $"Release when the countdown timer has a {buttonAnswer.Value.When } in any position",
+            ButtonReleaseOrHold.Hold => "Hold the button. Don't let go yet.",
+            ButtonReleaseOrHold.ReleaseWhen => $"Release when the countdown timer has a {buttonAnswer.Value.When} in any position",
             _ => ErrorInSolverMessage(nameof(ButtonSolver)),
         },
         ComplicatedWiresAnswer complicatedWiresAnswer => complicatedWiresAnswer.Value ? "CUT THE WIRE!" : "Don't cut.",
-        KeypadAnswer keypadAnswer => $"Solution found! Your result column is: { KeypadSolver.DisplaySymbols(keypadAnswer.Value) }",
+        KeypadAnswer keypadAnswer => $"Solution found! Your result column is: {KeypadSolver.DisplaySymbols(keypadAnswer.Value)}",
         MazeAnswer mazeAnswer => mazeAnswer.Value.Any() ?
             "The solution to the maze is: " + string.Join(',', mazeAnswer.Value) :
             "Start position is the target!",
-        MemoryAnswer memoryAnswer => memoryAnswer.Value.PositionOrLabel switch 
-        { 
-            MemoryPositionOrLabel.Position => $"Press the button in the {memoryAnswer.Value.Value.PositionWord()} position", 
+        MemoryAnswer memoryAnswer => memoryAnswer.Value.PositionOrLabel switch
+        {
+            MemoryPositionOrLabel.Position => $"Press the button in the {memoryAnswer.Value.Value.PositionWord()} position",
             MemoryPositionOrLabel.Label => $"Press the button labeled \"{memoryAnswer.Value.Value.PositionWord()}\"",
             _ => ErrorInSolverMessage(nameof(MemorySolver)),
         },
@@ -33,8 +33,8 @@ internal class CLIHandler : IOHandler
         PasswordAnswer passwordAnswer => $"Password is {passwordAnswer.Value}",
         SimonSaysAnswer simonSaysAnswer => $"Enter the following sequence: {string.Join("", simonSaysAnswer.Value.Select(c => "\n    " + c.ToString()))}",
         WhosOnFirstAnswer whosOnFirstAnswer => string.Join('\n', whosOnFirstAnswer.Value),
-        WireSequenceAnswer wireSequenceAnswer => wireSequenceAnswer.Value.WireSequenceAnswerState switch 
-        { 
+        WireSequenceAnswer wireSequenceAnswer => wireSequenceAnswer.Value.WireSequenceAnswerState switch
+        {
             WireSequenceAnswerState.Everything => "Cut EVERYTHING",
             WireSequenceAnswerState.Nothing => "Cut NOTHING",
             WireSequenceAnswerState.FirstOnly => "Cut the FIRST wire",

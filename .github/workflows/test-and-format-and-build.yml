@@ -1,4 +1,4 @@
-name: Windows Test and Build Logic
+name: Windows Test, Format and Build
 
 on:
   push:
@@ -50,3 +50,7 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test KTANE-helper
+
+    # Check if code is in accordance with HBM codestyle
+    - name: Format
+      run: dotnet format KTANE-helper --verify-no-changes --verbosity diagnostic
