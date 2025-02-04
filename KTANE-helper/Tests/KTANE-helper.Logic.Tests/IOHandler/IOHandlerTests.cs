@@ -1,6 +1,6 @@
-﻿namespace KTANE_helper.CLI.Tests;
+﻿namespace KTANE_helper.Logic.Tests;
 
-public class RegexParserTests
+public class IOHandlerTests
 {
     [Fact]
     public void IncompatibleQueryRequestsCannotBeCombined()
@@ -15,7 +15,7 @@ public class RegexParserTests
     }
 
     [Fact]
-    public void RegexParserCanAlwaysQuit()
+    public void QueryCanAlwaysQuit()
     {
 
     }

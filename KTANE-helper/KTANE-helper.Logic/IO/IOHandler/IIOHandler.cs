@@ -15,14 +15,14 @@ public interface IIOHandler
 
     public string Query(string message);
     public string Query(string message, IEnumerable<string> allowedValues);
-    public InputTypes.QueryResponse Query(InputTypes.QueryRequest request);
+    public Response Query(IOTypes.InputRequest request);
     public IEnumerable<string> QueryMultiple(string message, int n);
 
     public int IntQuery(string message);
     public int IntQuery(string message, IEnumerable<int> allowedValues);
 
-    public (int, int) CoordinateQuery(string message);
-    public (int, int) CoordinateQuery(string message, int minimalValue, int maximalValue);
+    public IOTypes.Coordinate CoordinateQuery(string message);
+    public IOTypes.Coordinate CoordinateQuery(string message, int minimalValue, int maximalValue);
 
     public bool Ask(string question);
 

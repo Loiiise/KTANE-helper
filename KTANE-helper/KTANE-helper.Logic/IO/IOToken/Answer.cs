@@ -23,7 +23,7 @@ public sealed record ComplicatedWiresAnswer : Answer<bool>;
 /// <summary>
 /// The sequence in which the <a cref="KeypadSymbol"/>s should be pressed.
 /// </summary>
-public sealed record KeypadAnswer : Answer<KeypadSymbol[]>;
+public sealed record KeypadAnswer : Answer<IOTypes.KeypadSymbol[]>;
 
 /// <summary>
 /// A sequence of steps for the player to reach the destination.

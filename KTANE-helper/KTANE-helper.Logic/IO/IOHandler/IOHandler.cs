@@ -37,6 +37,8 @@ public abstract class IOHandler : IIOHandler
         return result;
     }
 
+    public Response Query(IOTypes.InputRequest request) => throw new NotImplementedException();
+
     public IEnumerable<string> QueryMultiple(string message, int n)
     {
         ShowLine(message);
@@ -60,8 +62,8 @@ public abstract class IOHandler : IIOHandler
         return result;
     }
 
-    public (int, int) CoordinateQuery(string message) => CoordinateQuery(message, int.MinValue, int.MaxValue);
-    public (int, int) CoordinateQuery(string message, int minimalValue, int maximalValue)
+    public IOTypes.Coordinate CoordinateQuery(string message) => CoordinateQuery(message, int.MinValue, int.MaxValue);
+    public IOTypes.Coordinate CoordinateQuery(string message, int minimalValue, int maximalValue)
     {
         while (true)
         {
@@ -72,7 +74,7 @@ public abstract class IOHandler : IIOHandler
                 if (x >= minimalValue && x <= maximalValue &&
                     y >= minimalValue && y <= maximalValue)
                 {
-                    return (x, y);
+                    return new(x, y);
                 }
                 else
                 {
