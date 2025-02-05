@@ -76,9 +76,9 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
 
             var type = wire[1] switch
             {
-                'A' => WireSequenceType.A,
-                'B' => WireSequenceType.B,
-                'C' => WireSequenceType.C,
+                'A' => IOTypes.WireSequenceEndpoint.A,
+                'B' => IOTypes.WireSequenceEndpoint.B,
+                'C' => IOTypes.WireSequenceEndpoint.C,
                 _ => throw new ArgumentException($"Illegal wire type \"{wire[1]}\""),
             };
 
@@ -86,52 +86,44 @@ public class WireSequenceSolver : Solvable<WireSequenceSolver>
         }
     }
 
-    private readonly WireSequenceType[] _redMap =
+    private readonly IOTypes.WireSequenceEndpoint[] _redMap =
     [
-        WireSequenceType.C,
-        WireSequenceType.B,
-        WireSequenceType.A,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.B,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.A | WireSequenceType.B | WireSequenceType.C,
-        WireSequenceType.A | WireSequenceType.B,
-        WireSequenceType.B,
+        IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.A,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.B | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.B,
     ];
-    private readonly WireSequenceType[] _blueMap =
+    private readonly IOTypes.WireSequenceEndpoint[] _blueMap =
     [
-        WireSequenceType.B,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.B,
-        WireSequenceType.A,
-        WireSequenceType.B,
-        WireSequenceType.B | WireSequenceType.C,
-        WireSequenceType.C,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.A,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.A,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.B | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A,
     ];
-    private readonly WireSequenceType[] _blackMap =
+    private readonly IOTypes.WireSequenceEndpoint[] _blackMap =
     [
-        WireSequenceType.A | WireSequenceType.B | WireSequenceType.C,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.B,
-        WireSequenceType.A | WireSequenceType.C,
-        WireSequenceType.B,
-        WireSequenceType.B | WireSequenceType.C,
-        WireSequenceType.A | WireSequenceType.B,
-        WireSequenceType.C,
-        WireSequenceType.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.B | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.B | IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.A | IOTypes.WireSequenceEndpoint.B,
+        IOTypes.WireSequenceEndpoint.C,
+        IOTypes.WireSequenceEndpoint.C,
     ];
 
-    private record Wire(WireSequenceColour Colour, WireSequenceType Type);
-}
-
-[Flags]
-enum WireSequenceType
-{
-    A = 1 << 0,
-    B = 1 << 1,
-    C = 1 << 2,
+    private record Wire(WireSequenceColour Colour, IOTypes.WireSequenceEndpoint Type);
 }
 
 enum WireSequenceColour

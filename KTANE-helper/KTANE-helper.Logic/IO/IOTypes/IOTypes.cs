@@ -1,30 +1,32 @@
 ﻿namespace KTANE_helper.Logic.IO;
 
-public abstract record Response;
+public abstract record UserInput;
 
-public record ResponseQuit : Response;
+public record InputQuit : UserInput;
 
-public record ResponseContent(
-    IEnumerable<int>                  Integers,
-    IEnumerable<char>                 Characters,
-    IEnumerable<string>               Strings,
-    IEnumerable<IOTypes.Colour>       Colours,
-    IEnumerable<IOTypes.KeypadSymbol> KeypadSymbols,
-    IEnumerable<IOTypes.Coordinate>   Coordinates
-    ) : Response;
+public record InputContent<T1>(
+    IEnumerable<T1> Type1
+    ) : UserInput;
+
+public record InputContent<T1, T2>(
+    IEnumerable<T1> Type1,
+    IEnumerable<T2> Type2
+    ) : UserInput;
 
 public static class IOTypes
 {
     [Flags]
     public enum InputRequest
     {
-        None         = 0,
-        Integer      = 1 << 0,
-        Character    = 1 << 1,
-        String       = 1 << 2,
-        Colour       = 1 << 3,
-        KeypadSymbol = 1 << 4,
-        Coordinate   = 1 << 5,
+        None                    = 0,
+        Integer                 = 1 << 0,
+        Character               = 1 << 1,
+        String                  = 1 << 2,
+        Colour                  = 1 << 3,
+        ComplicatedWireProperty = 1 << 4,
+        WireSequenceEndpoint    = 1 << 5,
+        KeypadSymbol            = 1 << 6,
+        Coordinate              = 1 << 7,
     }
 
     #region Type Colour
@@ -44,6 +46,28 @@ public static class IOTypes
     public const string RedStringRepresentation = "r";
     public const string WhiteStringRepresentation = "w";
     public const string YellowStringRepresentation = "y";
+    #endregion
+
+    #region Complicated Wire Property
+    [Flags]
+    public enum ComplicatedWireProperty
+    {
+        None = 0,
+        Red  = 1 << 0,
+        Blue = 1 << 1,
+        Star = 1 << 2,
+        Led  = 1 << 3,
+    }
+    #endregion
+
+    #region Wire Sequence Endpoint
+    [Flags]
+    public enum WireSequenceEndpoint
+    {
+        A = 1 << 0,
+        B = 1 << 1,
+        C = 1 << 2,
+    }
     #endregion
 
     #region Type Keypad Symbol

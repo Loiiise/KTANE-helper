@@ -37,7 +37,7 @@ public abstract class IOHandler : IIOHandler
         return result;
     }
 
-    public Response Query(IOTypes.InputRequest request) => throw new NotImplementedException();
+    public UserInput Query(IOTypes.InputRequest request) => throw new NotImplementedException();
 
     public IEnumerable<string> QueryMultiple(string message, int n)
     {

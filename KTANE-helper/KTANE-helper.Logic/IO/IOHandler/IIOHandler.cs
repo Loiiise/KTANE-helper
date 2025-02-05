@@ -15,7 +15,7 @@ public interface IIOHandler
 
     public string Query(string message);
     public string Query(string message, IEnumerable<string> allowedValues);
-    public Response Query(IOTypes.InputRequest request);
+    public UserInput Query(IOTypes.InputRequest request);
     public IEnumerable<string> QueryMultiple(string message, int n);
 
     public int IntQuery(string message);
