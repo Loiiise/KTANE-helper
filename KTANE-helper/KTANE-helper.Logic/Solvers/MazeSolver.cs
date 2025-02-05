@@ -11,8 +11,16 @@ public class MazeSolver : Solvable<MazeSolver>
         var maze = Maze.GetMaze(_ioHandler.CoordinateQuery("What are the coordinates of a circle (these are 1 based).", Maze.MinimalValue, Maze.MaximalValue));
 
         // Find out start and target
-        var startPosition = Maze.LinearCoordinate(_ioHandler.CoordinateQuery("Where is the square?", Maze.MinimalValue, Maze.MaximalValue));
-        var targetPosition = Maze.LinearCoordinate(_ioHandler.CoordinateQuery("Where is the triangle?", Maze.MinimalValue, Maze.MaximalValue));
+        var startPosition = _ioHandler.CoordinateQuery(
+            "Where is the square?", 
+            Maze.MinimalValue, 
+            Maze.MaximalValue
+            ).LinearCoordinate(Maze.Width);
+        var targetPosition = _ioHandler.CoordinateQuery(
+            "Where is the triangle?", 
+            Maze.MinimalValue, 
+            Maze.MaximalValue
+            ).LinearCoordinate(Maze.Width);
 
         // Calculate and print path
         _ioHandler.Answer(new MazeAnswer { Value = BFS(maze, startPosition, targetPosition).ToArray() });
@@ -25,9 +33,9 @@ public class MazeSolver : Solvable<MazeSolver>
             return Array.Empty<MazeDirection>();
         }
 
-        Queue<int> queue = new Queue<int>();
-        HashSet<int> visited = new HashSet<int>();
-        Dictionary<int, int?> cameFrom = new Dictionary<int, int?>();
+        Queue<int> queue = new();
+        HashSet<int> visited = new();
+        Dictionary<int, int?> cameFrom = new();
 
         // Initialize BFS
         queue.Enqueue(startPosition);
@@ -60,7 +68,7 @@ public class MazeSolver : Solvable<MazeSolver>
 
     private IEnumerable<MazeDirection> ReconstructPath(Dictionary<int, int?> cameFrom, int startPosition, int targetPosition)
     {
-        List<int> path = new List<int>();
+        List<int> path = new();
         int? current = targetPosition;
 
         while (current != null)
@@ -90,17 +98,14 @@ public class Maze
     // Maze coordinates are 1-based
 
     private IEnumerable<int>[] _neighbours;
-    private Maze(IEnumerable<int>[] neighbours) => this._neighbours = neighbours;
+    private Maze(IEnumerable<int>[] neighbours) => _neighbours = neighbours;
 
-    public IEnumerable<int> GetNeighbours(int x, int y) => GetNeighbours(LinearCoordinate(x, y));
-    public IEnumerable<int> GetNeighbours(int linearCoordinate) => this._neighbours[linearCoordinate];
+    public IEnumerable<int> GetNeighbours(IOTypes.Coordinate coordinate) 
+        => GetNeighbours(coordinate.LinearCoordinate(Width));
+    public IEnumerable<int> GetNeighbours(int linearCoordinate) => _neighbours[linearCoordinate];
 
-    internal static int LinearCoordinate((int, int) coordinates) => LinearCoordinate(coordinates.Item1, coordinates.Item2);
-    internal static int LinearCoordinate(int x, int y) => (y - 1) * Height + (x - 1);
-
-    internal static Maze GetMaze((int, int) coordinates) => GetMaze(coordinates.Item1, coordinates.Item2);
-    internal static Maze GetMaze(int x, int y) => AllMazes[
-        (x, y) switch
+    internal static Maze GetMaze(IOTypes.Coordinate coordinate) => AllMazes[
+        coordinate switch
         {
             (1, 2) or (6, 3) => 0,
             (2, 4) or (5, 2) => 1,

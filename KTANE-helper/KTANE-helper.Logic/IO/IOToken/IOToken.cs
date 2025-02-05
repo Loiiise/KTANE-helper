@@ -1,3 +1,3 @@
 ﻿namespace KTANE_helper.Logic.IO;
 
-public interface IIOToken { }
+public abstract record IOToken { }
