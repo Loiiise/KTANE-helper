@@ -3,13 +3,13 @@
 public class IOHandlerTests
 {
     [Fact]
-    public void IncompatibleQueryRequestsCannotBeCombined()
+    public void SingleInputRequestsAreParsedCorrectly()
     {
 
     }
 
     [Fact]
-    public void RegexParserCorrectlyParsesInputStrings()
+    public void InputRequestCombinationsParseSeparately()
     {
 
     }
